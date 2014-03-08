@@ -67,7 +67,7 @@ should I rent or buy given my income?
 places for students to live off campus
 penny stocks
 optimize energy use
-optimize cash lookups on distributed systems (server farms)
+optimize cache lookups on distributed systems (server farms)
 skype or phone? VOIP price comparison
 
 
