@@ -8,26 +8,31 @@ There are many resources available to help find the retail price of gas; there a
 
 Solution: 
 
-Weight function for graph
-w = retail (# gals to fill + ((d1 + d2)/mpg))
-Default: d1 == d2
-retail is in $ / gal
-# gals to fill = f * tank capacity
-
+Let:
 d1 = distance from origin point to gas station
 d2 = distance from gas station to destination point
-f = fraction of tank to fill
+tc = tank capacity of car being used.
+f = fraction of fuel tank to fill
 mpg = miles per gallon of user car
-retail = price per gallon of gas at a specific gas station
+retail = price per gallon of gas at a specific gas station in dollars per gallon.
+
+Let the real price of gas be denoted by w. Then,
+
+w = retail ((f * tc) + ((d1 + d2)/mpg))
+
+
 
 Given 2 points a (starting point) and b (ending point) and given f, and the fuel efficiency of the car, the retail price of the gas, and fuel tank size,
-we can figure out the real cost of filling up your tank with gas. We will use the GasBuddy API to find out the real time
-retail cost of gas at each station in the database. We will have our own database of car data that we will use to get 
-the fuel tank size and fuel efficiency based on car type. We will also use Google Maps to provide the directions from
-the user's start point to the gas station and from the gas station to the destination. The Google Maps API will allow us
-to display a map of the user's current location, the gas station, and the destionation point. We will provide the user 
-with charts and graphs of information including the price of filling up their tank at given gas stations. The user will have the option to provide a limit on the search radius for gas stations. We will assume a search radius of 10 miles
-unless otherwise specified by the user.
+we can figure out the real cost of filling up your tank with gas. 
+
+We will use:
+- The GasBuddy API to find out the real time retail cost of gas at each station in the database. 
+- We will have our own database of car data that we will use to get the fuel tank size and fuel efficiency based on car type.
+- We will also use Google Maps to provide the directions and road distances from the user's start point to the gas station and from the gas station to the destination. 
+	The Google Maps API will allow us to display a map of the user's current location, the gas station, and the destionation point. 
+- We will provide the user with charts and graphs of information including the price of filling up their tank at given gas stations. 
+- The user will have the option to provide a limit on the search radius for gas stations. 
+	We will assume a search radius of 10 miles unless otherwise specified by the user.
 
 
 Features:
