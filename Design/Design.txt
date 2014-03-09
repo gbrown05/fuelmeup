@@ -20,7 +20,7 @@ f = fraction of tank to fill
 mpg = miles per gallon of user car
 retail = price per gallon of gas at a specific gas station
 
-Given 2 points a and b and given f, and the fuel efficiency of the car, the retail price of the gas, and fuel tank size,
+Given 2 points a (starting point) and b (ending point) and given f, and the fuel efficiency of the car, the retail price of the gas, and fuel tank size,
 we can figure out the real cost of filling up your tank with gas. We will use the GasBuddy API to find out the real time
 retail cost of gas at each station in the database. We will have our own database of car data that we will use to get 
 the fuel tank size and fuel efficiency based on car type. We will also use Google Maps to provide the directions from
@@ -54,11 +54,10 @@ Data:
 
 - Car type
 	- MPG
-- Gas type
+	- Capacity of tank
+- Fuel type
 - Start/end location
-- Capcity of tank
-- How much to fill tank
-- Current amount of gas in tank
+- How much to fill tank (fraction of tank to fill)
 - Search radius (will be a default radius)
 
 Algorithms: 
@@ -66,6 +65,5 @@ Algorithms:
 - Radix sort - to sort the weights (real prices of gas)
 - Min Heap (as alternative to sort)
 - Weight Algotrithm to determine real price gas
-
 
 Electronic mockups: See PDF of balsamiq wireframe
