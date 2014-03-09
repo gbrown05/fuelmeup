@@ -1,0 +1,24 @@
+Problem Statement
+
+retail price !=  real cost
+gas / money burned getting to station (G$ burned)
+real cost = retail + opportunity
+
+Solution
+
+APIs – GasBuddy
+retail cost #s
+opportunity cost = ((travel distance) / mpg) * (retail cost @ station)
+
+Features
+geolocation
+server-side data persistence
+report with charts & graphs
+front-end framework Bootstrap
+cloud storage
+client-side data persistence
+
+Weight function for graph
+w = retail (# gals to fill + (2*d/mpg))
+retail is in $ / gal
+# gals to fill = f * tank capacity
