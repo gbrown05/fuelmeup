@@ -1,4 +1,5 @@
 Project Title: FuelMeUp
+               More money for you, less for rich oil lords.
 
 Problem statement: 
 
@@ -6,7 +7,7 @@ We use cars to move around. Anyone who owns a car spends a significant part of t
 
 There are many resources available to help find the retail price of gas; there are also many location-based apps to help consumers find the closest gas station. GasBuddy is a popular tool to find cheap gas stations, but we forget about many of the other costs associated with filling up, especially the cost of the gas it takes to get to a gas station. Other factors include time and how much gas we need to put in our tanks. FuelMeUp will help people make informed decisions so they can save time and money.
 
-Solution: 
+How do we solve the problem: 
 
 Let:
 d1 = distance from origin point to gas station
@@ -35,7 +36,7 @@ We will use:
 	We will assume a search radius of 10 miles unless otherwise specified by the user.
 
 
-Features:
+List of Features:
 
 - Enter car type
 - Enter destination (optional; default: roundtrip from current location)
