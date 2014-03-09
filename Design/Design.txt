@@ -1,18 +1,38 @@
-Project Title: GMoney
+Project Title: FuelMeUp
 
 Problem statement: 
 
 We use cars to move around. Anyone who owns a car spends a significant part of their budget on gas. Filling up our cars with gas also takes time out of our busy lives.
 
-There are many resources available to help find the retail price of gas; there are also many location-based apps to help consumers find the closest gas station. GasBuddy is a popular tool to find cheap gas stations, but we forget about many of the other costs associated with filling up, especially the cost of the gas it takes to get to a gas station. Other factors include time and how much gas we need to put in our tanks. GMoney will help people make informed decisions so they can save time and money.
+There are many resources available to help find the retail price of gas; there are also many location-based apps to help consumers find the closest gas station. GasBuddy is a popular tool to find cheap gas stations, but we forget about many of the other costs associated with filling up, especially the cost of the gas it takes to get to a gas station. Other factors include time and how much gas we need to put in our tanks. FuelMeUp will help people make informed decisions so they can save time and money.
 
 Solution: 
 
-Weight function for graph
-w = retail (# gals to fill + ((d1 + d2)/mpg))
-Default: d1 == d2
-retail is in $ / gal
-number gals to fill = f * tank capacity
+Let:
+d1 = distance from origin point to gas station
+d2 = distance from gas station to destination point
+tc = tank capacity of car being used.
+f = fraction of fuel tank to fill
+mpg = miles per gallon of user car
+retail = price per gallon of gas at a specific gas station in dollars per gallon.
+
+Let the real price of gas be denoted by w. Then,
+
+w = retail ((f * tc) + ((d1 + d2)/mpg))
+
+
+
+Given 2 points a (starting point) and b (ending point) and given f, and the fuel efficiency of the car, the retail price of the gas, and fuel tank size,
+we can figure out the real cost of filling up your tank with gas. 
+
+We will use:
+- The GasBuddy API to find out the real time retail cost of gas at each station in the database. 
+- We will have our own database of car data that we will use to get the fuel tank size and fuel efficiency based on car type.
+- We will also use Google Maps to provide the directions and road distances from the user's start point to the gas station and from the gas station to the destination. 
+	The Google Maps API will allow us to display a map of the user's current location, the gas station, and the destionation point. 
+- We will provide the user with charts and graphs of information including the price of filling up their tank at given gas stations. 
+- The user will have the option to provide a limit on the search radius for gas stations. 
+	We will assume a search radius of 10 miles unless otherwise specified by the user.
 
 
 Features:
@@ -20,6 +40,7 @@ Features:
 - Enter car type
 - Enter destination (optional; default: roundtrip from current location)
 - Enter type of gas (optional; default: regular)
+- Enter search radius (optional; default: 10 miles)
 
 "Pick 5 Items"
 
@@ -38,13 +59,16 @@ Data:
 
 - Car type
 	- MPG
-- Gas type
+	- Capacity of tank
+- Fuel type
 - Start/end location
-- Capcity of tank
-- How much to fill tank
-- Current amount of gas in tank
+- How much to fill tank (fraction of tank to fill)
 - Search radius (will be a default radius)
 
 Algorithms: 
+
+- Radix sort - to sort the weights (real prices of gas)
+- Min Heap (as alternative to sort)
+- Weight Algotrithm to determine real price gas
 
 Electronic mockups: See PDF of balsamiq wireframe
