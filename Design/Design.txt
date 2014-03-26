@@ -73,3 +73,6 @@ Algorithms:
 - Weight Algotrithm to determine real price gas
 
 Electronic mockups: See PDF of balsamiq wireframe
+
+#COMMENTS BY MING
+*  "car data that we will use to get the fuel tank size" --I am intrigued. How will you get this data?
