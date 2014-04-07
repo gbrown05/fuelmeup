@@ -25,7 +25,9 @@ function initialize() {
     request = new XMLHttpRequest();
 
     //TODO: This is the DEV API KEY -- use production for real
-    var toget = "http://devapi.mygasfeed.com/stations/radius/" + lat + "/" + longe + "/" + radius + "/" + type + "/price/rfej9napna.json?"; 
+    var toget = "http://devapi.mygasfeed.com/stations/radius/" + lat + "/" +
+            longe + "/" + radius + "/" + type +
+            "/price/rfej9napna.json? callback="; 
     request.open("GET", toget, true);
 
     // Execute the request
@@ -38,11 +40,13 @@ function initialize() {
 // Handle the request
 function callback() {
     if (request.readyState == 4 && request.status == 200) {
-        parsed = JSON.parse(request.responseText); 
+        parsed = request.responseText;
+        var newStr = parsed.replace('({', '{');
+        parsed = JSON.parse(newStr); 
         renderMap();       
-    } else if (errcount < 10) {
+    /*} else if (errcount < 10) {
         errcount++;
-        setTimeout(initialize, 300);
+        setTimeout(initialize, 300);*/
     } else {
         console.log("Unable to get current gas station information.");
     }
