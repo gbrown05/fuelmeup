@@ -11,7 +11,7 @@ var lat = 0;
 var longe = 0;
 me = new google.maps.LatLng(lat, longe);
 var mapOptions = {
-    zoom: 11,
+    zoom: 14,
     center: me,
     mapTypeId: google.maps.MapTypeId.ROADMAP
 };
@@ -40,13 +40,13 @@ function initialize() {
 // Handle the request
 function callback() {
     if (request.readyState == 4 && request.status == 200) {
-        parsed = request.responseText;
+        var parsed = request.responseText;
         var newStr = parsed.replace('({', '{');
         parsed = JSON.parse(newStr); 
-        renderMap();       
+        renderMap(parsed);
     /*} else if (errcount < 10) {
-        errcount++;
-        setTimeout(initialize, 300);*/
+    errcount++;
+    setTimeout(initialize, 300);*/
     } else {
         //console.log("Unable to get current gas station information.");
     }
@@ -65,7 +65,7 @@ function getCurrentLocation() {
     }
 }
 
-function renderMap() {
+function renderMap(parsed) {
     me = new google.maps.LatLng(lat, longe);
     map = new google.maps.Map(document.getElementById("map"), mapOptions);
  
@@ -86,15 +86,15 @@ function renderMap() {
         infowindow.setContent("You are here.");
         infowindow.open(map, marker);
     });
+    addGasMarkers(parsed);
 }
 
-function addGasMarkers(){
-    if(parsed.status.error == "Yes") {
+function addGasMarkers(parsed){
+    if(parsed["status"].error == "Yes") {
         alert("Unable to locate gas stations.");
     }
     for (var i in parsed.stations) {
         createMarker(parsed.stations[i]);
-        console.log(parsed.stations[i].station);
     }
 }
 
