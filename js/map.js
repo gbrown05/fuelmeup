@@ -1,8 +1,12 @@
 // map.js
 // Fuel Me Up, Comp 20, April 2014
 
-var request;
+//gas parameters -- come from somewhere else
+var radius = 10; //temporary, will come from user
+var type = "reg";
 
+var request;
+var errcount = 0;
 var lat = 0;
 var longe = 0;
 me = new google.maps.LatLng(lat, longe);
@@ -15,11 +19,33 @@ var mapOptions = {
 var map;
 var marker;
 var infowindow = new google.maps.InfoWindow();
-var places;
 
 function initialize() {
     // Set up the request
-    getCurrentLocation();
+    request = new XMLHttpRequest();
+
+    //TODO: This is the DEV API KEY -- use production for real
+    var toget = "http://devapi.mygasfeed.com/stations/radius/" + lat + "/" + longe + "/" + radius + "/" + type + "/price/rfej9napna.json?"; 
+    request.open("GET", toget, true);
+
+    // Execute the request
+    request.send(null);
+
+    // Handle the request
+    request.onreadystatechange = callback;
+}
+
+// Handle the request
+function callback() {
+    if (request.readyState == 4 && request.status == 200) {
+        parsed = JSON.parse(request.responseText); 
+        renderMap();       
+    } else if (errcount < 10) {
+        errcount++;
+        setTimeout(initialize, 300);
+    } else {
+        console.log("Unable to get current gas station information.");
+    }
 }
 
 function getCurrentLocation() {
@@ -28,13 +54,9 @@ function getCurrentLocation() {
         navigator.geolocation.getCurrentPosition(function(position) {
             lat = position.coords.latitude;
             longe = position.coords.longitude;
-            renderMap();
-                console.log("hello");
-
+            initialize();
         });
-    }
-
-    else {
+    } else {
         alert("Geolocation is not supported by your web browser.");
     }
 }
@@ -61,4 +83,3 @@ function renderMap() {
         infowindow.open(map, marker);
     });
 }
-
