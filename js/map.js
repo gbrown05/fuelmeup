@@ -48,7 +48,7 @@ function callback() {
         errcount++;
         setTimeout(initialize, 300);*/
     } else {
-        console.log("Unable to get current gas station information.");
+        //console.log("Unable to get current gas station information.");
     }
 }
 
@@ -87,3 +87,37 @@ function renderMap() {
         infowindow.open(map, marker);
     });
 }
+
+function addGasMarkers(){
+    if(parsed.status.error == "Yes") {
+        alert("Unable to locate gas stations.");
+    }
+    for (var i in parsed.stations) {
+        createMarker(parsed.stations[i]);
+        console.log(parsed.stations[i].station);
+    }
+}
+
+function createMarker(currStation){
+    var stationLoc = new google.maps.LatLng(currStation.lat, currStation.lng);
+    
+    //will need to add more info about price, type, etc.
+    // Add the marker
+    var stationMarker = new google.maps.Marker({
+        map: map,
+        position: stationLoc,
+    });
+
+    // Using the API, add information about close gas stations
+    google.maps.event.addListener(stationMarker, 'click', function() {
+        infowindow.close();
+        infowindow.setContent(currStation.station); // This gets the information
+        infowindow.open(map, this);
+    });
+}
+
+
+
+
+
+

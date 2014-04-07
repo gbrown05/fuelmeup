@@ -16,10 +16,11 @@ body {
 }
 
 #map {
-	width: 50%;
-	height: 0%;
+	margin: 5%;
+	width: 500px;
+	height: 350px;
 }
 
 p {
-        text-align: center;
+    text-align: center;
 }
