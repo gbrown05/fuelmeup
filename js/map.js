@@ -74,7 +74,7 @@ function renderMap(parsed) {
     marker = new google.maps.Marker({
         position: me,
         title: "You are here",
-        icon: "http://maps.google.com/mapfiles/kml/shapes/arrow.png"
+//        icon: "http://maps.google.com/mapfiles/kml/shapes/arrow.png"
     });
 
     marker.setMap(map);
@@ -93,7 +93,13 @@ function addGasMarkers(parsed){
     if(parsed["status"].error == "Yes") {
         alert("Unable to locate gas stations.");
     }
-    for (var i in parsed.stations) {
+	//Only display at most the cheapest 20 gas stations. It seems as if
+	// distance does not play much of a role beyond this.
+	var l = parsed.stations.length;
+	if (l > 20) {
+		l = 20;
+	}
+    for (var i = 0; i < l; i++) {
         createMarker(parsed.stations[i]);
     }
 }
@@ -106,6 +112,7 @@ function createMarker(currStation){
     var stationMarker = new google.maps.Marker({
         map: map,
         position: stationLoc,
+	icon: "/images/gas_ico.png"
     });
 
     // Using the API, add information about close gas stations
