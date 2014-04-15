@@ -1,0 +1,32 @@
+To do:
+big stuff:
+Make API from car database
+deal with cars/info that DNE
+deal with queries and stuff
+figure out how to present the best options for the user
+mobile interface -- different!!
+
+medium stuff:
+sanitize input
+graphs?
+cookies/local storage
+
+easy stuff:
+render map (should be an easy bug fix)
+make title on homepage/make it look pretty
+about.html
+validate html5 and css
+
+eventually:
+switch to live mygasfeed API (key on asana)
+
+Pick 5:
+Geolocation
+mongodb
+client side data persistence
+bootstrap
+charts/graphs
+
+required:
+mobile
+at least 2 apis
