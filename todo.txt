@@ -29,4 +29,4 @@ charts/graphs
 
 required:
 mobile
-at least 2 apis
+gasbuddy + google maps at least 2 apis

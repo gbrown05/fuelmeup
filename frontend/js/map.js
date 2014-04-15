@@ -112,7 +112,7 @@ function createMarker(currStation){
     var stationMarker = new google.maps.Marker({
         map: map,
         position: stationLoc,
-	icon: "../../images/gas_ico.png"
+	    icon: "images/gas_ico.png"
     });
 
     // Using the API, add information about close gas stations
