@@ -1,3 +1,7 @@
+It's probably more helpful to start working on a big thing and own it than to
+just work on an easy thing.
+
+
 To do:
 big stuff:
 Make API from car database
@@ -5,16 +9,13 @@ deal with cars/info that DNE
 deal with queries and stuff
 figure out how to present the best options for the user
 mobile interface -- different!!
-
-medium stuff:
 sanitize input
-graphs?
+graphs
 cookies/local storage
 
 easy stuff:
-render map (should be an easy bug fix)
-make title on homepage/make it look pretty
 about.html
+make the whole thing look good
 validate html5 and css
 
 eventually:
@@ -28,5 +29,5 @@ bootstrap
 charts/graphs
 
 required:
-mobile
+mobile UI (media queries)
 gasbuddy + google maps at least 2 apis
