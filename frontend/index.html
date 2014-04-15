@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 	<title>Fuel Me Up!</title>	
 	<link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrap.css"/>
-	<script src="js/jquery-1.9.1.min.js"></script>
     <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"</script>
     <script src="js/map.js"></script>
@@ -22,10 +20,31 @@
 		</div>
 	</form>
 	<!--End Navigation Bar-->
-	<div id="carmakes">
-		<input class="typeahead" type="text" placesholder="Make and Model">
+	<div id="carmakes" class="pagination-centered">
+		<input class="typeahead" type="text" placeholder="Car make">
 	</div>
-	<div id="map"></div>
+
+	<div id="carmodelyear" class="pagination-centered">
+		<input class="typeahead" type="text" placeholder="Model and Year">
+	</div>
+
+	<div id="typegas" class="pagination-centered">
+		<input class="typeahead" type="text" placeholder="What type of gas do you buy?">
+	</div>
+
+	<div id="destination" class="pagination-centered">
+		<input class="typeahead" type="text" placeholder="Are you going anywhere else?">
+	</div>
+
+	<div id="howmuch" class="pagination-centered">
+		<input class="typeahead" type="text" placeholder="How much gas do you want?">
+	</div>
+
+	<div id="howfar" class="pagination-centered">
+		<input class="typeahead" type="text" placeholder="How many miles will you go?">
+	</div>
+
+	<div id="map" id="map_canvas"></div>
 	<div class="modal_footer"></div>
 </body>
 </html>
