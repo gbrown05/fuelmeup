@@ -3,13 +3,14 @@ var carMakes = new Bloodhound({
   queryTokenizer: Bloodhound.tokenizers.whitespace,
   limit: 10,
   prefetch: {
-    // url points to a json file that contains an array of car makes
-    url: '../../db/makes.json',
+    // url points to a json file that contains an array of country names, see
+    // https://github.com/twitter/typeahead.js/blob/gh-pages/data/countries.json
+    url: '../../carMakes.json',
     // the json file contains an array of strings, but the Bloodhound
     // suggestion engine expects JavaScript objects so this converts all of
     // those strings
     filter: function(list) {
-      return $.map(list, function(makes) { return { name: makes }; });
+      return $.map(list, function(carMakes) { return { name: carMakes }; });
     }
   }
 });
@@ -19,7 +20,7 @@ carMakes.initialize();
  
 // passing in `null` for the `options` arguments will result in the default
 // options being used
-$('#carmakes .typeahead').typeahead(null, {
+$('#prefetch .typeahead').typeahead(null, {
   name: 'carMakes',
   displayKey: 'name',
   // `ttAdapter` wraps the suggestion engine in an adapter that
@@ -27,6 +28,49 @@ $('#carmakes .typeahead').typeahead(null, {
   source: carMakes.ttAdapter()
 });
 
+/*
+
+
+
+
+
+
+
+
+
+var gasTypes = ['Premium', 'Plus', 'Regular', 'Diesel', 'Jet Fuel'
+];
+
+var gasTypes = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  local: $.map(gasTypes, function(gasTypes) { return { value: gasTypes }; })
+  // limit: 10,
+  // prefetch: {
+    // url points to a json file that contains an array of car makes
+    // url: '../../db/makes.json',
+    // the json file contains an array of strings, but the Bloodhound
+    // suggestion engine expects JavaScript objects so this converts all of
+    // those strings
+    //filter: function(list) {
+    //  return $.map(list, function(makes) { return { name: makes }; });
+   // }
+  // }
+});
+ 
+// kicks off the loading/processing of `local` and `prefetch`
+gasTypes.initialize();
+ 
+// passing in `null` for the `options` arguments will result in the default
+// options being used
+$('#gasTypes .typeahead').typeahead(null, {
+  name: 'gasTypes',
+  displayKey: 'name',
+  // `ttAdapter` wraps the suggestion engine in an adapter that
+  // is compatible with the typeahead jQuery plugin
+  source: gasTypes.ttAdapter()
+});
+/* 
 var substringMatcher = function(strs) {
   return function findMatches(q, cb) {
     var gases, substringRegex;
@@ -63,4 +107,4 @@ $('#typegas .typeahead').typeahead({
   name: 'types',
   displayKey: 'value',
   source: substringMatcher(types)
-});
+});*/
