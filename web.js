@@ -22,6 +22,10 @@ app.get('/', function(req, res) {
     res.sendfile(__dirname, 'frontend', path.basename("index.html"));
 });
 
+app.get('/about', function(req, res) {
+    res.sendfile(__dirname, 'frontend', path.basename("about.html"));
+});
+
 app.get('/carMakes.json', function(req, res) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Origin", "X-Requested-With");
