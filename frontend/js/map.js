@@ -11,7 +11,7 @@ var lat = 0;
 var longe = 0;
 me = new google.maps.LatLng(lat, longe);
 var mapOptions = {
-    zoom: 14,
+    zoom: 12,
     center: me,
     mapTypeId: google.maps.MapTypeId.ROADMAP
 };
@@ -67,8 +67,15 @@ function getCurrentLocation() {
 
 function renderMap(parsed) {
     me = new google.maps.LatLng(lat, longe);
-    map = new google.maps.Map(document.getElementById("map"), mapOptions);
- 
+    map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+     
+    $(window).resize(function () {
+        var h = $(window).height(),
+            offsetTop = 60; // Calculate the top offset
+
+        $('#map-canvas').css('height', (h - offsetTop));
+    }).resize();
+
     map.panTo(me);
 
     marker = new google.maps.Marker({
@@ -122,8 +129,6 @@ function createMarker(currStation){
         infowindow.open(map, this);
     });
 }
-
-
 
 
 
