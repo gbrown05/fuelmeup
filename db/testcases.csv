@@ -1,0 +1,26 @@
+barrels08,city08,comb08,fuelType,highway08,make,model,mpgData,UCity,UHighway,VClass,year
+15.689436,19,21,Regular,25,Alfa Romeo,Spider Veloce 2000,Y,23.3333,35,Two Seaters,1985
+29.950562,9,11,Regular,14,Ferrari,Testarossa,N,11,19,Two Seaters,1985
+12.19557,23,27,Regular,33,Dodge,Charger,Y,29,47,Subcompact Cars,1985
+29.950562,10,11,Regular,12,Dodge,B150/B250 Wagon 2WD,N,12.2222,16.6667,Vans,1985
+17.337486,17,19,Premium,23,Subaru,Legacy AWD Turbo,N,21,32,Compact Cars,1993
+14.964294,21,22,Regular,24,Subaru,Loyale,N,27,33,Compact Cars,1993
+13.1844,22,25,Regular,29,Subaru,Loyale,Y,28,41,Compact Cars,1993
+13.73375,23,24,Regular,26,Toyota,Corolla,Y,29,37,Compact Cars,1993
+12.657024,23,26,Regular,31,Toyota,Corolla,Y,30,43,Compact Cars,1993
+13.1844,23,25,Regular,30,Toyota,Corolla,Y,29,42,Compact Cars,1993
+12.657024,23,26,Regular,30,Toyota,Corolla,Y,30,42.3077,Compact Cars,1993
+15.689436,18,21,Regular,26,Volkswagen,Golf III / GTI,N,23,36,Compact Cars,1993
+13.73375,21,24,Regular,29,Volkswagen,Golf III / GTI,Y,27,41,Compact Cars,1993
+15.689436,18,21,Regular,26,Volkswagen,Jetta III,N,23,36,Compact Cars,1993
+25.336022,12,13,Regular,15,Dodge,B150/B250 Wagon 2WD,N,14.4444,21,Vans,1985
+14.327048,20,23,Regular,28,Volkswagen,Jetta III,N,25,39,Compact Cars,1993
+16.4805,18,20,Regular,23,Volvo,240,N,22,32.0513,Compact Cars,1993
+15.689436,19,21,Regular,26,Volvo,240,Y,23.3333,36,Compact Cars,1993
+17.337486,17,19,Premium,22,Audi,100,Y,21,31,Midsize Cars,1993
+17.337486,17,19,Premium,24,Audi,100,N,21,33.3333,Midsize Cars,1993
+20.589638,14,16,Premium,20,BMW,740i,N,17.7778,28,Midsize Cars,1993
+20.589638,14,16,Premium,20,BMW,740il,Y,17,28,Midsize Cars,1993
+25.336022,11,13,Regular,17,BMW,750il,N,13.3333,23,Midsize Cars,1993
+14.327048,21,23,Regular,28,Buick,Century,N,26,39.7436,Midsize Cars,1993
+17.337486,17,19,Regular,24,Buick,Century,Y,21.1111,33,Midsize Cars,1993
