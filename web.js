@@ -39,7 +39,29 @@ app.get('/carMakes.json', function(req, res) {
         });
 });
 
+app.get('/carMPG.json', function(req, res) {
+	//Holds the car make
+	var _make = req.query.make;
+	var _model = req.query.model;
+	
+	//This is "cars1" on the herokuapp
+	var collectionName = "makes";
+	
+	db.collection(collectionName, function(er,col) {
+		if(!er) {
+			col.find({make:_make, model:_model} , {UCity:1, UHighway:1, year:1, _id:0} ).toArray(function(err, makeList) {
+
+				res.send(makeList);
+			});
+		} else {
+			res.send('Error!');
+		}
+	})
+});	
+
+
 var port = Number(process.env.PORT || 5000);
 app.listen(port, function() {
     console.log("Listening on " + port);
 });
+
