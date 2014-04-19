@@ -28,7 +28,7 @@ app.get('/about', function(req, res) {
 
 app.get('/carMakes.json', function(req, res) {
 	//This is "cars1" on the herokuapp
-	var collectionName = "makes";
+	var collectionName = "cars1";
 
         db.collection(collectionName, function(er, col) {
             if (!er) {

@@ -1,8 +1,9 @@
-#map {
-	width: 50%;
+#map-canvas {
+	height: 400px;
+	width: 40%;
 	height: 50%;
 }
-
+/*
 html {
 	height: 100%;
 	font-family: "HelveticaNeue-Light";
@@ -12,4 +13,4 @@ body {
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
-}
+}*/
