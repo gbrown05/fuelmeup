@@ -9,7 +9,7 @@ var mongo = require("mongodb");
 var app = express();
 
 var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL ||
-    "mongodb://localhost/fuelmeup";
+    "mongodb://localhost/testdb";
 
 var db = mongo.Db.connect(mongoUri, function (err, database) {
     db = database;
@@ -27,23 +27,16 @@ app.get('/about', function(req, res) {
 });
 
 app.get('/carMakes.json', function(req, res) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Origin", "X-Requested-With");
-    //var carMake = req.query.make;
-    //var mk = req.query.carMake;
-    //if(mk == undefined || mk === undefined) {
-    //    res.send("[]");
-    //} else {
-        db.collection("cars1", function(er, col) {
+	//This is "cars1" on the herokuapp
+	var collectionName = "makes";
+
+        db.collection(collectionName, function(er, col) {
             if (!er) {
-                col.find({}).toArray(function(err, good) {
-                    console.log("hello");
-                    res.send(good);
+                col.find({},{make:1, _id:0}).toArray(function(err, makeList) {
+                    res.send(makeList);
                 });
             }
         });
-    //}
-    res.send("error: can't find car make");
 });
 
 var port = Number(process.env.PORT || 5000);
