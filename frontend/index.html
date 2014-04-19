@@ -11,6 +11,7 @@
     href="bootstrap/css/bootstrapcosmo.min.css"/>
     <script src="js/map.js"></script>
     <script src="js/carinfo.js"></script>
+    <script src="js/fetchinputs.js"></script>
 </head>
 
 <body onload="getCurrentLocation()">
@@ -28,11 +29,11 @@
 		<div class="col-md-6">
 			<h1 class="pagination-centered">Fuel Me Up!</h1>
 				<div id="prefetch" class="pagination-centered">
-					<input class="typeahead" type="text" placeholder="Car make">
+					<input id="carmake" class="typeahead" type="text" placeholder="Car make">
 				</div>
 
 			<div id="carmodelyear" class="pagination-centered">
-				<input class="typeahead" type="text" placeholder="Model and Year">
+				<input id="carmodelyear" class="typeahead" type="text" placeholder="Model and Year">
 			</div>
 
 			<div id="georgetesting">
@@ -42,19 +43,19 @@
 			</div>
 
 			<div id="destination" class="pagination-centered">
-				<input class="typeahead" type="text" placeholder="Are you going anywhere else?">
+				<input id="destination" class="typeahead" type="text" placeholder="Are you going anywhere else?">
 			</div>
 
 			<div id="howmuch" class="pagination-centered">
-				<input class="typeahead" type="text" placeholder="How much gas do you want?">
+				<input id="howmuch" class="typeahead" type="text" placeholder="How much gas do you want?">
 			</div>
 
 			<div id="howfar" class="pagination-centered">
-				<input class="typeahead" type="text" placeholder="How many miles will you go?">
+				<input id="howfar" class="typeahead" type="text" placeholder="How many miles will you go?">
 			</div>
 
 			<div class="button.btn.btn-large pagination-centered">
-				<button class="btn btn-default btn-lg" type="button">
+				<button class="btn btn-default btn-lg" type="button" onclick="fetchInputs()" >
 		    	Fuel Me Up!
 		  		</button>
 			</div>
