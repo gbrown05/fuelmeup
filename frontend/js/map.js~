@@ -125,7 +125,7 @@ function createMarker(currStation){
     // Using the API, add information about close gas stations
     google.maps.event.addListener(stationMarker, 'click', function() {
         infowindow.close();
-	var content = "<div class=cont><p>"+currStation.station +'</p><p> Price: $' + currStation.price + ' per gallon </p> <p>  Distance: ' + currStation.distance + '</p> </div>';
+	var content = "<div class=cont><p>"+currStation.station +'</p><p> Price: $' + currStation.price + ' per gallon </p> <p>  Distance: ' + currStation.distance + '</p> </div>;
         infowindow.setContent(content); // This gets the information
         infowindow.open(map, this);
     });

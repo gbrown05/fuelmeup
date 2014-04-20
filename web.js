@@ -26,6 +26,7 @@ app.get('/about', function(req, res) {
     res.sendfile(__dirname, 'frontend', path.basename("about.html"));
 });
 
+/*Returns all the car makes in a JSON String, with repeats */
 app.get('/carMakes.json', function(req, res) {
 	//This is "cars1" on the herokuapp
 	var collectionName = "cars1";
@@ -38,7 +39,7 @@ app.get('/carMakes.json', function(req, res) {
             }
         });
 });
-
+/* Returns a JSON of the various miles-per-gallon values of a car of a given make and model */
 app.get('/carMPG.json', function(req, res) {
 	//Holds the car make
 	var _make = req.query.make;
