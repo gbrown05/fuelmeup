@@ -4,14 +4,14 @@ just work on an easy thing.
 
 To do:
 big stuff:
-Make API from car database
+Make API from car database -- sidd
 deal with cars/info that DNE
 deal with queries and stuff
 figure out how to present the best options for the user
 mobile interface -- different!!
 sanitize input
 graphs
-cookies/local storage
+cookies/local storage -- victor
 
 easy stuff:
 about.html
