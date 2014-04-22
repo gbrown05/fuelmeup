@@ -35,12 +35,12 @@ function fetchInputs()
     var tester = new Object();
     tester = $.ajax({
         type: "GET",
-        url: "http://fuelmeup.herokuapp.com/carMPG.json",
-        data: {"_make":"Acura","_model":"MDX"},
+        url: "http://fuelmeup.herokuapp.com/carMakes.json",
+        data: {},
         dataType: "json",
     });
 
-    console.log(tester.toString());
+    console.log(tester);
 
     setLocalStorage();
 }
