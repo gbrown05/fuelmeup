@@ -35,7 +35,7 @@ function fetchInputs()
     var tester = new Object();
     tester = $.ajax({
         type: "GET",
-        url: "../../carMPG.json",
+        url: "http://fuelmeup.herokuapp.com/carMPG.json",
         data: {"_make":"Acura","_model":"MDX"},
         dataType: "json",
     });
