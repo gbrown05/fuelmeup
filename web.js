@@ -48,8 +48,8 @@ app.get('/carMPG.json', function(req, res) {
 	var _make = req.query.make;
 	var _model = req.query.model;
 	
-	//This is "cars1" on the herokuapp
-	var collectionName = "makes";
+	//This is "cars1" on the herokuapp / "makes" on sidds local
+	var collectionName = "cars1";
 	
 	db.collection(collectionName, function(er,col) {
 		if(!er) {
