@@ -5,6 +5,7 @@ var sanitizeInput = require("validator").sanitize;
 var http = require("http");
 var path = require ("path");
 var mongo = require("mongodb");
+var favicon = require("static-favicon");
 
 var app = express();
 
@@ -17,6 +18,8 @@ var db = mongo.Db.connect(mongoUri, function (err, database) {
 
 app.use(logfmt.requestLogger());
 app.use(express.static(path.join(__dirname, "frontend")));
+app.use(favicon(path.join(__dirname,
+                                "frontend/images/fmufavicon.ico")));
 
 app.get('/', function(req, res) {
     res.sendfile(__dirname, 'frontend', path.basename("index.html"));
@@ -26,6 +29,7 @@ app.get('/about', function(req, res) {
     res.sendfile(__dirname, 'frontend', path.basename("about.html"));
 });
 
+/*Returns all the car makes in a JSON String, with repeats */
 app.get('/carMakes.json', function(req, res) {
 	//This is "cars1" on the herokuapp
 	var collectionName = "cars1";
@@ -38,7 +42,7 @@ app.get('/carMakes.json', function(req, res) {
             }
         });
 });
-
+/* Returns a JSON of the various miles-per-gallon values of a car of a given make and model */
 app.get('/carMPG.json', function(req, res) {
 	//Holds the car make
 	var _make = req.query.make;
