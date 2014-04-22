@@ -40,7 +40,7 @@ function fetchInputs()
         dataType: "json",
     });
 
-    console.log(tester);
+    console.log(tester.toString());
 
     setLocalStorage();
 }
