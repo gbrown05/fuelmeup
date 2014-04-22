@@ -13,7 +13,7 @@ f = fraction of fuel tank to fill
 mpg = miles per gallon of user car
 retail = price per gallon of gas at a specific gas station in dollars per gallon.
 */
-$.ajax
+//$.ajax
 
 
 
@@ -40,7 +40,7 @@ function fetchInputs()
         dataType: "json",
     });
 
-    console.log(tester.toString());
+    console.log(tester);
 
     setLocalStorage();
 }
