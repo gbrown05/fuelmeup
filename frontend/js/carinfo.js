@@ -1,4 +1,4 @@
-var carMakes = new Bloodhound({
+/* var carMakes = new Bloodhound({
   datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
   queryTokenizer: Bloodhound.tokenizers.whitespace,
   limit: 10,
@@ -27,7 +27,7 @@ $('#prefetch .typeahead').typeahead(null, {
   // is compatible with the typeahead jQuery plugin
   source: carMakes.ttAdapter()
 });
-
+*/
 /*
 
 
