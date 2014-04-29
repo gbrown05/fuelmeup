@@ -38,7 +38,7 @@ function fetchInputs()
         url: "http://fuelmeup.herokuapp.com/carMakes.json",
         data: {},
         dataType: "json",
-        success: CALL A FUNCTION;
+        success: function() {console.log("Success!");}
     });
 
     console.log(tester);
