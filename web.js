@@ -16,10 +16,12 @@ var db = mongo.Db.connect(mongoUri, function (err, database) {
     db = database;
 });
 
+app.set("port", process.env.PORT || 3000);
 app.use(logfmt.requestLogger());
 app.use(express.static(path.join(__dirname, "frontend")));
 app.use(favicon(path.join(__dirname,
                                 "frontend/images/fmufavicon.ico")));
+
 
 app.get('/', function(req, res) {
     res.sendfile(__dirname, 'frontend', path.basename("index.html"));
@@ -67,8 +69,7 @@ app.get('/carMPG.json', function(req, res) {
 });	
 
 
-var port = Number(process.env.PORT || 5000);
-app.listen(port, function() {
-    console.log("Listening on " + port);
+http.createServer(app).listen(app.get("port"), function() {
+    console.log("Listening on " + app.get("port"));
 });
 
