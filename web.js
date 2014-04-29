@@ -37,7 +37,7 @@ app.get('/carMakes.json', function(req, res) {
 	res.header("Access-Control-Allow-Headers", "X-Requested-With");
 
 	//This is "cars1" on the herokuapp
-	var collectionName = "makes";
+	var collectionName = "cars1";
 
         db.collection(collectionName, function(er, col) {
             if (!er) {
@@ -52,27 +52,25 @@ app.get('/carMPG.json', function(req, res) {
 
 	//Allow CORS
 	res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
 
 	//Holds the car make
-	var _make = req.query.make;
-	var _model = req.query.model;
+	var _make = sanitizeInput(req.query.make).escape();
+	var _model = sanitizeInput(req.query.model).escape();
 	
 	//This is "cars1" on the herokuapp / "makes" on sidds local
 	var collectionName = "cars1";
 	
 	db.collection(collectionName, function(er,col) {
 		if(!er) {
-
-			col.find({"make":_make, "model":_model} , {UCity:1, UHighway:1, year:1, _id:0} ).toArray(function(err, makeList) {
 			col.find({"make":"_make", "model":"_model"} , {UCity:1, UHighway:1, year:1, _id:0} ).toArray(function(err, makeList) {
-
 				res.send(makeList);
 			});
-		} else {
+		}
+		 else {
 			res.send('Error!');
 		}
-	})
+	});
 });	
 
 
