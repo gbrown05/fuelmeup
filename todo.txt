@@ -7,18 +7,19 @@ big stuff:
 deal with cars/info that DNE
 deal with queries and stuff
 figure out how to present the best options for the user
-mobile interface -- different!!
+mobile interface -- Max
 sanitize input -- George
-graphs
+graphs -- max/victor --> look at halligan helper source code
 cookies/local storage -- victor
 
 easy stuff:
 about.html
 make the whole thing look good
-validate html5 and css
+validate html5 (and css?)
 
 eventually:
 switch to live mygasfeed API (key on asana)
+finalize google maps API stuff/gas stations, etc
 
 Pick 5:
 Geolocation

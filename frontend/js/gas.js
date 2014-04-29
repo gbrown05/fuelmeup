@@ -33,11 +33,12 @@ function fetchInputs()
     distance = document.getElementById("howfar");
 
     var tester = new Object();
-    tester = $.ajax({
+    $.ajax({
         type: "GET",
         url: "http://fuelmeup.herokuapp.com/carMakes.json",
         data: {},
         dataType: "json",
+        success: CALL A FUNCTION;
     });
 
     console.log(tester);
