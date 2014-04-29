@@ -32,7 +32,7 @@ app.get('/about', function(req, res) {
 /*Returns all the car makes in a JSON String, with repeats */
 app.get('/carMakes.json', function(req, res) {
 	//This is "cars1" on the herokuapp
-	var collectionName = "cars1";
+	var collectionName = "makes";
 
         db.collection(collectionName, function(er, col) {
             if (!er) {
@@ -53,7 +53,7 @@ app.get('/carMPG.json', function(req, res) {
 	
 	db.collection(collectionName, function(er,col) {
 		if(!er) {
-			col.find({make:_make, model:_model} , {UCity:1, UHighway:1, year:1, _id:0} ).toArray(function(err, makeList) {
+			col.find({"make":_make, "model":_model} , {UCity:1, UHighway:1, year:1, _id:0} ).toArray(function(err, makeList) {
 
 				res.send(makeList);
 			});
