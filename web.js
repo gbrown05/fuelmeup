@@ -31,6 +31,9 @@ app.get('/about', function(req, res) {
 
 /*Returns all the car makes in a JSON String, with repeats */
 app.get('/carMakes.json', function(req, res) {
+	res.header("Access-Control-Allow-Origin", "fuelmeup.herokuapp.com");
+	res.header("Access-Control-Allow-Headers", "X-Requested-With");
+
 	//This is "cars1" on the herokuapp
 	var collectionName = "cars1";
 
