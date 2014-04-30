@@ -31,6 +31,14 @@ function fetchInputs()
 	var queryData = new Object();
 	queryData["make"]= carMake;
 	queryData["model"] = carModelYear;
+        var originToStation = new Object();
+        originToStation["origin"] = /* current location */
+        originToStation["destination"] = /* gas station */
+        originToStation["sensor"] = false;
+        var stationToDest = new Object();
+        stationToDest["origin"] = /* gas station */
+        stationToDest["destination"] = destination;
+        stationToDest["sensor"] = false;
 
 
     $.ajax({
@@ -40,6 +48,22 @@ function fetchInputs()
         data: queryData,
         dataType: "json",
         success: function(tester) {console.log(tester);}
+    });
+
+    $.ajax({
+        type: "GET",
+        url: "http://maps.googleapis.com/maps/api/directions/json",
+        data: originToStation,
+        dataType: "json",
+        success: function(distance) {console.log(distance);}
+    });
+
+    $.ajax({
+        type: "GET",
+        url: "http://maps.googleapis.com/maps/api/directions/json",
+        data: stationToDest,
+        dataType: "json",
+        success: function(dist) {console.log(dist);}
     });
 
     setLocalStorage();
