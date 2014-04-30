@@ -104,8 +104,8 @@ function fetchInputs()
 
     $.ajax({
         type: "GET",
-	//http://fuelmeup.herokuapp.com/carMakes.json
-        url: "http://localhost:3000/carMPG.json",
+	    url: "http://fuelmeup.herokuapp.com/carMPG.json",
+        //url: "http://localhost:3000/carMPG.json",
         data: queryData,
         dataType: "json",
         success: function(tester) {
@@ -272,7 +272,6 @@ function createMarker(currStation){
 
 	//Calculating round-trip price
 	price = actualPrice(currStation.price, currStation.distance, currStation.distance, tankSize, gasAmount, MPG);
-	console.log(price);
 
 
 	var content = "<div class=cont><p>"+currStation.station +'</p><p> Listed Price: $' + currStation.price + ' per gallon </p> <p>  Distance: ' + currStation.distance + '</p> <p> Fuel Me Up Price: $' + price + '</p> <p> Gas Buddy Price: $'+ (currStation.price * 15) + '</p></div>';
