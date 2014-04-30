@@ -102,8 +102,8 @@ function fetchInputs()
 
     $.ajax({
         type: "GET",
-	//http://fuelmeup.herokuapp.com/carMakes.json
-        url: "http://localhost:3000/carMPG.json",
+	    url: "http://fuelmeup.herokuapp.com/carMakes.json",
+        //url: "http://localhost:3000/carMPG.json",
         data: queryData,
         dataType: "json",
         success: function(tester) {
