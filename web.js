@@ -8,9 +8,16 @@ var mongo = require("mongodb");
 var favicon = require("static-favicon");
 
 var app = express();
+var colName;
 
 var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL ||
     "mongodb://localhost/testdb";
+
+if(mongoUri == process.env.MONGOLAB_URI) {
+	colName = "cars1";
+} else {
+	colName = "makes";
+}
 
 var db = mongo.Db.connect(mongoUri, function (err, database) {
     db = database;
@@ -36,10 +43,7 @@ app.get('/carMakes.json', function(req, res) {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "X-Requested-With");
 
-	//This is "cars1" on the herokuapp
-	var collectionName = "makes";
-
-        db.collection(collectionName, function(er, col) {
+        db.collection(colName, function(er, col) {
             if (!er) {
                 col.find({},{make:1, _id:0}).toArray(function(err, makeList) {
                     res.send(makeList);
@@ -58,9 +62,7 @@ app.get('/carMPG.json', function(req, res) {
 	var _make = escape(req.query.make);
 	var _model = escape(req.query.model);
 	
-	//This is "cars1" on the herokuapp / "makes" on sidds local
-	var collectionName = "makes";
-	db.collection(collectionName, function(er,col) {
+	db.collection(colName, function(er,col) {
 		if(!er) {
 			col.find({"make":_make, "model":_model} , {UCity:1, UHighway:1, year:1, _id:0} ).toArray(function(err, makeList) {
 				res.send(makeList);
