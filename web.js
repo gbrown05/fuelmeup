@@ -64,7 +64,7 @@ app.get('/carMPG.json', function(req, res) {
 	
 	db.collection(colName, function(er,col) {
 		if(!er) {
-			col.find({"make":_make, "model":_model} , {UCity:1, UHighway:1, year:1, _id:0} ).toArray(function(err, makeList) {
+			col.find({"make":_make, "model":_model} , {UCity:1, UHighway:1, year:1, barrels08:1,  _id:0} ).toArray(function(err, makeList) {
 				res.send(makeList);
 			});
 		}

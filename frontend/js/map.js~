@@ -4,7 +4,7 @@
 //gas parameters -- come from somewhere else
 
 var stationsList;
-
+var tankSize;
 var MPG;
 var carMake;
 var carModelYear;
@@ -14,6 +14,7 @@ var gasAmount;
 var distance;
 var radius = 10; //temporary, will come from user
 var type = "reg";
+
 
 var request;
 var errcount = 0;
@@ -112,6 +113,7 @@ function fetchInputs()
 		var resText = "<h3> Results </h3> <p>Your car is a " + carMake +" " + carModelYear + " with a city mileage of " + tester[0]["UCity"] + "MPG and a highway mileage of " + tester[0]["UHighway"] + "MPG </p>"; 
 		results.innerHTML = resText;
 		MPG = tester[0]["UHighway"];
+		tankSize = tester[0]["barrels08"];
 		addGasMarkers(stationsList);
 
 	}
@@ -157,28 +159,6 @@ function setLocalStorage()
     localStorage["gasAmount"] = gasAmount;
     localStorage["distance"] = distance;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -290,7 +270,7 @@ function createMarker(currStation){
 
 
 	//Calculating round-trip price
-	price = actualPrice(currStation.price, currStation.distance, currStation.distance, 15, gasAmount, MPG);
+	price = actualPrice(currStation.price, currStation.distance, currStation.distance, tankSize, gasAmount, MPG);
 	console.log(price);
 
 
