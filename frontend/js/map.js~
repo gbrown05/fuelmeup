@@ -161,6 +161,28 @@ function setLocalStorage()
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function initialize() {
     // Set up the request
     request = new XMLHttpRequest();
