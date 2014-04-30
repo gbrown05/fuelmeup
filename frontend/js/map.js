@@ -55,7 +55,8 @@ function actualPrice (retail, d1, d2, tc, f, mpg) {
 
 function getLocalStorage() {
     if (localStorage["carMake"] != undefined) {
-        document.getElementById("make").value = localStorage["carMake"];
+        var make = document.getElementById("make");
+        make.value = localStorage["carMake"];
     }
     if (localStorage["carModelYear"] != undefined) {
         document.getElementById("modelyear").value = localStorage["carModelYear"];
@@ -108,7 +109,6 @@ function fetchInputs()
         data: queryData,
         dataType: "json",
         success: function(tester) {
-		MPG
 		var results = document.getElementById("results");
 		var resText = "<h3> Results </h3> <p>Your car is a " + carMake +" " + carModelYear + " with a city mileage of " + tester[0]["UCity"] + "MPG and a highway mileage of " + tester[0]["UHighway"] + "MPG </p>"; 
 		results.innerHTML = resText;
@@ -198,6 +198,7 @@ function getCurrentLocation() {
         navigator.geolocation.getCurrentPosition(function(position) {
             lat = position.coords.latitude;
             longe = position.coords.longitude;
+            getLocalStorage();
             initialize();
         });
     } else {
