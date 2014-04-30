@@ -40,6 +40,10 @@ function fetchInputs()
         stationToDest["destination"] = destination;
         stationToDest["sensor"] = false;
 
+    var gasBuddyURI = "http://devapi.mygasfeed.com/stations/radius/" + /* lat */ + "/" +
+                     /* lng */ + "/" + distance + "/" + /* fuel type */ +
+                     "/distance/rfej9napna.json";
+
 
     $.ajax({
         type: "GET",
@@ -61,7 +65,7 @@ function fetchInputs()
         url: "http://maps.googleapis.com/maps/api/directions/json",
         data: originToStation,
         dataType: "json",
-        success: function(distance) {console.log(distance);}
+        success: function(res) {console.log(res);}
     });
 
     $.ajax({
@@ -69,8 +73,17 @@ function fetchInputs()
         url: "http://maps.googleapis.com/maps/api/directions/json",
         data: stationToDest,
         dataType: "json",
-        success: function(dist) {console.log(dist);}
+        success: function(res) {console.log(res);}
     });
+
+    $.ajax({
+        type: "GET",
+        url: gasBuddyURI,
+        data: {},
+        dataType: "json",
+        success: function(res) {concole.log(res);}
+    });
+
 
     setLocalStorage();
 }
