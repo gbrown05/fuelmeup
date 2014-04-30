@@ -42,6 +42,17 @@ function fetchInputs()
         success: function(tester) {console.log(tester);}
     });
 
+/*
+    $.ajax({
+        type: "GET",
+	//http://fuelmeup.herokuapp.com/carMPG.json
+        url: "http://localhost:5000/carMPG.json",
+        data: {"?"+"make="+carMake+"model="+carModelYear},
+        dataType: "json",
+        success: function(tester) {console.log(tester);}
+    });
+*/
+
     setLocalStorage();
 }
 

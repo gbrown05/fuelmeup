@@ -30,29 +30,29 @@
 		<div class="col-md-6">
 			<h1 class="pagination-centered">Find Cheap Gas.</h1>
 				<div id="prefetch" class="pagination-centered">
-					<input id="make" class="typeahead" type="text" placeholder="Car make">
+					<input id="carmake" class="typeahead" type="text" placeholder="Car make">
 				</div>
 
 			<div id="carmodelyear" class="pagination-centered">
-				<input id="modelyear" class="typeahead" type="text" placeholder="Model and Year">
+				<input id="carmodelyear" class="typeahead" type="text" placeholder="Model and Year">
 			</div>
 
 			<div id="georgetesting">
 				<div id="gasType" class="pagination-centered">
-					<input class="typeahead" id="type" type="text" placeholder="What type of gas do you buy?">
+					<input class="typeahead" id="gasType" type="text" placeholder="What type of gas do you buy?">
 				</div>
 			</div>
 
 			<div id="destination" class="pagination-centered">
-				<input id="dest" class="typeahead" type="text" placeholder="Are you going anywhere else?">
+				<input id="destination" class="typeahead" type="text" placeholder="Are you going anywhere else?">
 			</div>
 
 			<div id="howmuch" class="pagination-centered">
-				<input id="amount" class="typeahead" type="text" placeholder="How much gas do you want?">
+				<input id="howmuch" class="typeahead" type="text" placeholder="How much gas do you want?">
 			</div>
 
 			<div id="howfar" class="pagination-centered">
-				<input id="dist" class="typeahead" type="text" placeholder="How many miles will you go?">
+				<input id="howfar" class="typeahead" type="text" placeholder="How many miles will you go?">
 			</div>
 
 			<div class="button.btn.btn-large pagination-centered">
