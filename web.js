@@ -8,21 +8,17 @@ var mongo = require("mongodb");
 var favicon = require("static-favicon");
 
 var app = express();
-var colName;
+//var colName;
 
 var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL ||
     "mongodb://localhost/testdb";
 
-if(mongoUri == process.env.MONGOLAB_URI) {
-	colName = "cars1";
-} else {
-	colName = "makes";
-}
 
+/*
 var db = mongo.Db.connect(mongoUri, function (err, database) {
     db = database;
 });
-
+*/
 app.set("port", process.env.PORT || 3000);
 app.use(logfmt.requestLogger());
 app.use(express.static(path.join(__dirname, "frontend")));
@@ -43,7 +39,10 @@ app.get('/carMakes.json', function(req, res) {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "X-Requested-With");
 
-        db.collection(colName, function(er, col) {
+	var db = mongo.Db.connect(mongoUri, function (error, goodthing) {
+		db = goodthing;
+	});
+        db.collection("cars1", function(er, col) {
             if (!er) {
                 col.find({},{make:1, _id:0}).toArray(function(err, makeList) {
                     res.send(makeList);
@@ -61,8 +60,11 @@ app.get('/carMPG.json', function(req, res) {
 	//Holds the car make
 	var _make = escape(req.query.make);
 	var _model = escape(req.query.model);
+	var db = mongo.Db.connect(mongoUri, function (error, goodthing) {
+		db = goodthing;
+	});
 	
-	db.collection(colName, function(er,col) {
+	db.collection("cars1", function(er,col) {
 		if(!er) {
 			col.find({"make":_make, "model":_model} , {UCity:1, UHighway:1, year:1, barrels08:1,  _id:0} ).toArray(function(err, makeList) {
 				res.send(makeList);
