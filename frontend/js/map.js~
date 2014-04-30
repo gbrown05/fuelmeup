@@ -20,7 +20,6 @@ var request;
 var errcount = 0;
 var lat = 0;
 var longe = 0;
-var parsed = {};
 me = new google.maps.LatLng(lat, longe);
 var mapOptions = {
     zoom: 12,
@@ -56,8 +55,7 @@ function actualPrice (retail, d1, d2, tc, f, mpg) {
 
 function getLocalStorage() {
     if (localStorage["carMake"] != undefined) {
-        var make = document.getElementById("make");
-        make.value = localStorage["carMake"];
+        document.getElementById("make").value = localStorage["carMake"];
     }
     if (localStorage["carModelYear"] != undefined) {
         document.getElementById("modelyear").value = localStorage["carModelYear"];
@@ -90,12 +88,12 @@ function fetchInputs()
 	queryData["make"]= carMake;
 	queryData["model"] = carModelYear;
         var originToStation = new Object();
-        originToStation["origin"] = "Chicago";
-        originToStation["destination"] = "St. Louis";
+        originToStation["origin"] = /* current location */
+        originToStation["destination"] = /* gas station */
         originToStation["sensor"] = false;
         var stationToDest = new Object();
-        stationToDest["origin"] = "St. Louis";
-        stationToDest["destination"] = "New York";
+        stationToDest["origin"] = /* gas station */
+        stationToDest["destination"] = destination;
         stationToDest["sensor"] = false;
 
     var gasBuddyURI = "http://devapi.mygasfeed.com/stations/radius/" + /* lat */ + "/" +
@@ -105,11 +103,12 @@ function fetchInputs()
 
     $.ajax({
         type: "GET",
-	    url: "http://fuelmeup.herokuapp.com/carMPG.json",
-        //url: "http://localhost:3000/carMPG.json",
+	//http://fuelmeup.herokuapp.com/carMakes.json
+        url: "http://localhost:3000/carMPG.json",
         data: queryData,
         dataType: "json",
         success: function(tester) {
+		MPG
 		var results = document.getElementById("results");
 		var resText = "<h3> Results </h3> <p>Your car is a " + carMake +" " + carModelYear + " with a city mileage of " + tester[0]["UCity"] + "MPG and a highway mileage of " + tester[0]["UHighway"] + "MPG </p>"; 
 		results.innerHTML = resText;
@@ -120,6 +119,7 @@ function fetchInputs()
 	}
     });
 
+/*
     $.ajax({
         type: "GET",
         url: "http://maps.googleapis.com/maps/api/directions/json",
@@ -135,13 +135,13 @@ function fetchInputs()
         dataType: "json",
         success: function(res) {console.log(res);}
     });
-/*
+
     $.ajax({
         type: "GET",
         url: gasBuddyURI,
         data: {},
         dataType: "json",
-        success: function(res) {console.log(res);}
+        success: function(res) {concole.log(res);}
     });
 
 */
@@ -183,7 +183,7 @@ function initialize() {
 // Handle the request
 function callback() {
     if (request.readyState == 4 && request.status == 200) {
-        parsed = request.responseText;
+        var parsed = request.responseText;
         var newStr = parsed.replace('({', '{');
         parsed = JSON.parse(newStr); 
         renderMap(parsed);
@@ -198,7 +198,6 @@ function getCurrentLocation() {
         navigator.geolocation.getCurrentPosition(function(position) {
             lat = position.coords.latitude;
             longe = position.coords.longitude;
-            getLocalStorage();
             initialize();
         });
     } else {
@@ -272,6 +271,7 @@ function createMarker(currStation){
 
 	//Calculating round-trip price
 	price = actualPrice(currStation.price, currStation.distance, currStation.distance, tankSize, gasAmount, MPG);
+	console.log(price);
 
 
 	var content = "<div class=cont><p>"+currStation.station +'</p><p> Listed Price: $' + currStation.price + ' per gallon </p> <p>  Distance: ' + currStation.distance + '</p> <p> Fuel Me Up Price: $' + price + '</p> <p> Gas Buddy Price: $'+ (currStation.price * 15) + '</p></div>';
