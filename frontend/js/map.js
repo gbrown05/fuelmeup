@@ -140,7 +140,7 @@ function fetchInputs()
         url: gasBuddyURI,
         data: {},
         dataType: "json",
-        success: function(res) {concole.log(res);}
+        success: function(res) {console.log(res);}
     });
 
 */
