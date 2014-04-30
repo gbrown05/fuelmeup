@@ -13,10 +13,6 @@ f = fraction of fuel tank to fill
 mpg = miles per gallon of user car
 retail = price per gallon of gas at a specific gas station in dollars per gallon.
 */
-//$.ajax
-
-
-
 function actualPrice (retail, d1, d2, tc, f, mpg) {
 	var w = retail((f*tc) + ((d1 + d2)/mpg));
 	return w;
