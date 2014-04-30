@@ -9,6 +9,7 @@ var request;
 var errcount = 0;
 var lat = 0;
 var longe = 0;
+var parsed = {};
 me = new google.maps.LatLng(lat, longe);
 var mapOptions = {
     zoom: 12,
@@ -40,7 +41,7 @@ function initialize() {
 // Handle the request
 function callback() {
     if (request.readyState == 4 && request.status == 200) {
-        var parsed = request.responseText;
+        parsed = request.responseText;
         var newStr = parsed.replace('({', '{');
         parsed = JSON.parse(newStr); 
         renderMap(parsed);
