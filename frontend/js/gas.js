@@ -47,7 +47,13 @@ function fetchInputs()
         url: "http://localhost:3000/carMPG.json",
         data: queryData,
         dataType: "json",
-        success: function(tester) {console.log(tester);}
+        success: function(tester) {
+		var results = document.getElementById("results");
+		var resText = "<h3> Results </h3> <p>Your car is a " + carMake +" " + carModelYear + " with a city mileage of " + tester[0]["UCity"] + "MPG and a highway mileage of " + tester[0]["UHighway"] + "MPG </p>"; 
+		results.innerHTML = resText;
+		console.log(tester);
+
+	}
     });
 
     $.ajax({

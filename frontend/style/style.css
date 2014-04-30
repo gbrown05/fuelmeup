@@ -1,16 +1,10 @@
-#map-canvas {
-	height: 400px;
-	width: 40%;
-	height: 50%;
-  margin-bottom: 50px; 
-}
-
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
   position: relative;
   min-height: 100%;
 }
+
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
@@ -31,4 +25,21 @@ body {
 }
 .container .text-muted {
   margin: 20px 0;
+}
+
+#map-canvas {
+  height: 400px;
+  width: 40%;
+  height: 50%;
+  margin: 0 auto 0 auto;
+}
+
+@media only screen and (min-width: 992px) {
+  #map-canvas {
+     height: 400px;
+     width: 40%;
+     height: 50%;
+     margin-bottom: 50px;
+     margin-top: 50px; 
+  }
 }
