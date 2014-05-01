@@ -271,7 +271,7 @@ function addGasMarkers(parsed){
 	}
 	table = table + "</table>";
 	document.getElementById("results").innerHTML = table;
-    enquire.register("screen and (min-width:45em)", function() {
+    enquire.register("screen and (max-width:62em)", function() {
     $.fancybox({
         margin: 5,
         padding: 5,
