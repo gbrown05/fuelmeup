@@ -275,8 +275,10 @@ function addGasMarkers(parsed){
 	table = table + "</table>";
 	//document.getElementById("results").innerHTML = table;
     $.fancybox({
-        margin: 0,
+        margin: 5,
         padding: 5,
+        width: "auto",
+        height: "auto",
         autoSize: true, // shouldn't be true ?
         fitToView: false,
         maxWidth: 940,
