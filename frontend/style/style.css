@@ -28,19 +28,29 @@ body {
 }
 
 #map-canvas {
-  height: 400px;
+  height: 100%;
   width: 40%;
-  height: 50%;
   margin: 0 auto 0 auto;
+  margin-left: 10%;
+  margin-bottom: 30px;
   width: 75%;
 }
 
 @media only screen and (min-width: 992px) {
   #map-canvas {
-     height: 400px;
+     height: 100%;
      width: 40%;
-     height: 50%;
      margin-bottom: 50px;
-     margin-top: 50px; 
+     margin-top: 26px; 
+     margin-left: 1%;
+     margin-right: 1%;
+  }
+}
+
+@media only screen and (max-device-width: 720px) {
+  table, .table-responsive {
+    width: 150%;
+    margin-left: 25%;
+    margin-right: 25%;
   }
 }

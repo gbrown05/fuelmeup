@@ -273,8 +273,15 @@ function addGasMarkers(parsed){
 + "</td><td>" + weightedList[j].address + "</td><td>" + weightedList[j].distance + "</td></tr>";
 	}
 	table = table + "</table>";
-	document.getElementById("results").innerHTML = table;
-
+	//document.getElementById("results").innerHTML = table;
+    $.fancybox({
+        "overlayShow": false,
+        "transitionIn": "elastic",
+        "transitionOut": "elastic",
+        "overlayColor": "#000",
+        "overlayOpacity": 0.8,
+        "content": table
+      })
 }
 
 function createMarker(currStation, ctr){

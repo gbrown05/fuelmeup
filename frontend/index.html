@@ -10,8 +10,11 @@
 	<link type="text/css" rel="stylesheet" href="style/style.css" />
 	<link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrap.css"/>
     <link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrapcosmo.min.css"/>
+    <script type="text/javascript" src="js/jquery.fancybox.js"></script>
+    <script type="text/javascript" src="js/jquery.fancybox.pack.js"></script>
     <script src="js/map.js"></script>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.min.css" media="only screen and (max-device-width:720px)"/>
+    <link href="style/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+    <!--<link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.min.css" media="only screen and (max-device-width:720px)"/>-->
 </head>
 
 <body onload="getCurrentLocation()">
@@ -28,8 +31,9 @@
 	<!--End Navigation Bar-->
 	<div class="row-fluid">
 		<div class="col-md-6">
-		<div class="table-responsive">
-		<div id="results" class="table">
+		<!--<div class="table-responsive">-->
+		<div id="results"></div>
+		<div class="table">
 			<h1 class="pagination-centered">Find Cheap Gas.</h1>
 				<div class="pagination-centered">
 					<input id="make" class="typeahead" type="text" placeholder="Car make">
@@ -52,17 +56,10 @@
 		    	Fuel Me Up!
 		  		</button>
 			</div>
-			</div></div>
+			</div><!--</div>-->
 		</div>
 		<div id="map-canvas" class="col-md-6">
 		</div>
-
-
-
-		
-
-
-
 	</div>
 	<div>&nbsp;<br></div>
 	<div id="results" class="visible-xs"></div>
@@ -70,7 +67,6 @@
       <div class="container">
         <p class="text-muted">Fuel Me Up &copy; 2014 &bullet; George Brown, Victor Chao, Max Cohen &amp; Siddhartha Prasad</p>
       </div>
-    </div>
-
+    </div><br><br>
 </body>
 </html>
