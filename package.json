@@ -1,6 +1,6 @@
 {
   "name": "fuelmeup",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "fuel me up",
   "main": "web.js",
   "scripts": {
@@ -14,7 +14,7 @@
     "fuel",
     "tufts"
   ],
-  "author": "George, Sidd, Max, victor",
+  "author": "George, Sidd, Max, Victor",
   "license": "none",
   "bugs": {
     "url": "https://github.com/tuftsdev/comp20-s2014-team18/issues"
@@ -22,9 +22,11 @@
   "homepage": "https://github.com/tuftsdev/comp20-s2014-team18",
   "dependencies": {
     "logfmt": "^1.1.2",
-    "express": "^4.0.0"
+    "express": "^4.0.0",
+    "mongodb": "^1.4.2",
+    "static-favicon": "^1.0.2"
   },
   "engines":{
-          "node":"0.10.26"
+          "node":"0.10.x"
   }
 }
