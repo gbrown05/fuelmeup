@@ -321,4 +321,26 @@ function createMarker(currStation, ctr){
     });
 }
 
+/*
+var service = new google.maps.DistanceMatrixService();   
+  service.getDistanceMatrix(
+      {
+        origins: [me, stationLoc],
+        destinations: [stationLoc, destination],
+        travelMode: google.maps.TravelMode.DRIVING,
+        unitSystem: google.maps.UnitSystem.IMPERIAL 
+      }, parseDistance);
 
+function parseDistance(response, status) {
+    if (status == google.maps.DistanceMatrixStatus.OK) {
+        var from = response.rows[0].elements[0];
+        fromDistance = from.distance.text;
+	fromDistance = fromDistance + "les";
+        console.log(fromDistance);
+        var to = response.rows[1].elements[1];
+        toDistance = to.distance.text;
+	toDistance = toDistance + "les";
+        console.log(toDistance);
+    }
+}
+*/
