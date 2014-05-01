@@ -1,22 +1,11 @@
 To do:
 big stuff:
 deal with cars/info that DNE -- BAD USER INPUT!!!
-GRAPHS!
+GRAPHS! --> this page isn't really responsive --> create diff mobile layout
 sanitize input -- are we good on this?
-typeahead? distance/other routes?
+typeahead? distance/other routes? year??
 
 easy stuff:
 about.html -- still should be better
-validate html5 (and css?)
+validate html5 (and css?) --> done, but might need to re check
 remove extra files/node modules (eg validator if we dont use)
-
-Pick 5:
-Geolocation
-mongodb
-client side data persistence
-bootstrap
-charts/graphs
-
-required:
-mobile UI (media queries)
-gasbuddy + google maps at least 2 apis
