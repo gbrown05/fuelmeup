@@ -8,8 +8,7 @@ var favicon = require("static-favicon");
 var app = express();
 
 var mongoUri =
-"mongodb://heroku_app24729594:g7ve7744njmp6659fdfg9g9b5f@ds037468.mongolab.com:37468/heroku_app24729594"; /*process.env.MONGOLAB_URI || process.env.MONGOHQ_URL ||
-    "mongodb://localhost/testdb";*/
+"mongodb://heroku_app24729594:g7ve7744njmp6659fdfg9g9b5f@ds037468.mongolab.com:37468/heroku_app24729594"; 
 
 var db = mongo.Db.connect(mongoUri, function (err, database) {
     db = database;
