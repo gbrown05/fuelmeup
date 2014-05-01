@@ -138,17 +138,24 @@ function fetchInputs()
 
     $.ajax({
         type: "GET",
-	    url: "http://fuelmeup.herokuapp.com/carMPG.json",
-        //url: "http://localhost:3000/carMPG.json",
+	//    url: "http://fuelmeup.herokuapp.com/carMPG.json",
+        url: "http://localhost:3000/carMPG.json",
         data: queryData,
         dataType: "json",
         success: function(tester) {
 		//var results = document.getElementById("results");
 		//var resText = "<h3> Results </h3> <p>Your car is a " + carMake +" " + carModelYear + " with a city mileage of " + tester[0]["UCity"] + "MPG and a highway mileage of " + tester[0]["UHighway"] + "MPG </p>"; 
 		//results.innerHTML = resText;
+		
+
+		if (tester[0] != undefined) {		
 		MPG = tester[0]["UHighway"];
 		tankSize = tester[0]["barrels08"];
 		addGasMarkers(stationsList);
+		} else {
+			alert("This car model is not supported!");
+			
+		}
 
 	}
     });
@@ -311,8 +318,7 @@ function addGasMarkers(parsed){
 			weightedList[i] = temp; 
 	}
 	console.log(weightedList);
-	//results = document.getElementById("results");
-	/*results.innerHTML = results.innerHTML + */
+
 	var table = "<h3> Cheapest stations, in order </h3><table><tr><th>Name</th><th>Real Price:</th><th>Address</th><th>Distance</th></tr>";
 	for (var j = 0; j < l; j++) {
 		table = table + "<tr><td>" + weightedList[j].station + "</td><td>" + weightedList[j].FMUprice
