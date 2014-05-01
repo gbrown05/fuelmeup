@@ -275,12 +275,17 @@ function addGasMarkers(parsed){
 	table = table + "</table>";
 	//document.getElementById("results").innerHTML = table;
     $.fancybox({
-        "overlayShow": false,
-        "transitionIn": "elastic",
-        "transitionOut": "elastic",
-        "overlayColor": "#000",
-        "overlayOpacity": 0.8,
-        "content": table
+        margin: 0,
+        padding: 5,
+        autoSize: true, // shouldn't be true ?
+        fitToView: false,
+        maxWidth: 940,
+        overlayShow: false,
+        transitionIn: "elastic",
+        transitionOut: "elastic",
+        overlayColor: "#000",
+        overlayOpacity: 0.8,
+        content: table
       })
 }
 
