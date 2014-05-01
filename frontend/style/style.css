@@ -1,22 +1,30 @@
 /* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
-}
+from http://getbootstrap.com/2.3.2/examples/sticky-footer.html
+-------------------------------------------------- 
+Other CSS custom
+*/
 
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-}
-#footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #f5f5f5;
-}
+/* DESKTOP/BIG SCREENS */
+@media only screen and (min-width: 992px) {
+      html,
+      body {
+        height: 100%;
+      }
+
+      /* Wrapper for page content to push down footer */
+      #wrap {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        margin: 0 auto -60px;
+      }
+      #push,
+      #footer {
+        height: 60px;
+      }
+      #footer {
+        background-color: #f5f5f5;
+      }
 
 .container {
   width: auto;
@@ -27,15 +35,6 @@ body {
   margin: 20px 0;
 }
 
-#map-canvas {
-  height: 100%;
-  margin: 0 auto 0 auto;
-  margin-left: 10%;
-  margin-bottom: 30px;
-  width: 75%;
-}
-
-@media only screen and (min-width: 992px) {
   #map-canvas {
      height: 100%;
      width: 40%;
@@ -46,14 +45,56 @@ body {
   }
 }
 
-@media only screen and (max-device-width: 720px) {
-  table, .table-responsive {
-    width: 150%;
-    margin-left: 0%;
-    margin-right: 25%;
+/* PHONES AND TABLETS */
+@media only screen and (max-width: 991px) {
+  html,
+  body {
+    height: 100%;
   }
-  body, html { 
-    overflow-y: hidden;
-    width: 100%; 
-}
+
+  /* Wrapper for page content to push down footer */
+  #wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -60px;
+  }
+
+  #push,
+  #footer {
+    height: 60px;
+  }
+  #footer {
+    background-color: #f5f5f5;
+  }
+
+  /* Lastly, apply responsive CSS fixes as necessary */
+    #footer {
+      margin-left: -20px;
+      margin-right: -20px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+  .container {
+    max-width: 680px;
+    padding: 0 15px;
+  }
+  .container .text-muted {
+    margin: 20px 0;
+  }
+    table, .table-responsive {
+      width: 100%;
+      margin-left: 0%;
+      margin-right: 25%;
+      overflow-y: hidden;
+
+    }
+    #map-canvas {
+      height: 100%;
+      margin: 0 auto 0 auto;
+      margin-left: 10%;
+      margin-bottom: 30px;
+      width: 75%;
+    }
 }
