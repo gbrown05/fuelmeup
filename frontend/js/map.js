@@ -57,8 +57,7 @@ function actualPrice (retail, d1, d2, tc, f, mpg) {
 
 function getLocalStorage() {
     if (localStorage["carMake"] != undefined) {
-        var make = document.getElementById("make");
-        make.value = localStorage["carMake"];
+        document.getElementById("make").value = localStorage["carMake"];
     }
     if (localStorage["carModelYear"] != undefined) {
         document.getElementById("modelyear").value = localStorage["carModelYear"];
@@ -259,7 +258,7 @@ function addGasMarkers(parsed){
 
 	//weightedList.sort( function(a,b) {return (a.FMUprice - b.FMUprice); });
 
-	results = document.getElementById("results");
+	results = document.getElementById("data");
 	results.innerHTML = results.innerHTML + "<h3> Cheapest stations, in order </h3>";
 	for (var j = 0; j < l; j++) {
 		results.innerHTML = results.innerHTML + "<p> Name: " + weightedList[j].station + "<br>Real Price: $" + weightedList[j].FMUprice
