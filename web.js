@@ -36,7 +36,7 @@ app.get('/carMakes.json', function(req, res) {
 
         db.collection("makes", function(er, col) {
             if (!er) {
-                col.find({},{make:1, _id:0}).toArray(function(err, makeList) {
+                col.find({},{make:1, model:1, _id:0}).toArray(function(err, makeList) {
                     res.send(makeList);
                 });
             }

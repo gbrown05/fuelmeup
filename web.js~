@@ -7,8 +7,8 @@ var favicon = require("static-favicon");
 
 var app = express();
 
-var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL ||
-    "mongodb://localhost/testdb";
+var mongoUri =
+"mongodb://heroku_app24729594:g7ve7744njmp6659fdfg9g9b5f@ds037468.mongolab.com:37468/heroku_app24729594"; 
 
 var db = mongo.Db.connect(mongoUri, function (err, database) {
     db = database;
@@ -36,7 +36,7 @@ app.get('/carMakes.json', function(req, res) {
 
         db.collection("makes", function(er, col) {
             if (!er) {
-                col.find({},{make:1, _id:0}).toArray(function(err, makeList) {
+                col.find({},{make:1,  _id:0}).toArray(function(err, makeList) {
                     res.send(makeList);
                 });
             }
@@ -51,7 +51,7 @@ app.get('/carMPG.json', function(req, res) {
 
 	//Holds the car make
 	var _make = escape(req.query.make);
-	var _model = (req.query.model);
+	var _model = escape(req.query.model);
 
 	db.collection("makes", function(er,col) {
 		if(!er) {
