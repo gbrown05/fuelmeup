@@ -16,6 +16,8 @@ var radius = 10; //temporary, will come from user
 var type = "reg";
 
 
+var weightedList = new Object();
+
 var request;
 var errcount = 0;
 var lat = 0;
@@ -91,11 +93,13 @@ function fetchInputs()
         var originToStation = new Object();
         originToStation["origin"] = "Chicago";
         originToStation["destination"] = "St. Louis";
-        originToStation["sensor"] = false;
+        originToStation["sensor"] = "false";
+        originToStation["key"] = "AIzaSyDIXte623c_AXb7Ie127ENVIYUADql4EFI";
         var stationToDest = new Object();
         stationToDest["origin"] = "St. Louis";
         stationToDest["destination"] = "New York";
-        stationToDest["sensor"] = false;
+        stationToDest["sensor"] = "false";
+        stationToDest["key"] = "AIzaSyDIXte623c_AXb7Ie127ENVIYUADql4EFI";
 
     var gasBuddyURI = "http://devapi.mygasfeed.com/stations/radius/" + /* lat */ + "/" +
                      /* lng */ + "/" + distance + "/" + /* fuel type */ +
@@ -104,8 +108,8 @@ function fetchInputs()
 
     $.ajax({
         type: "GET",
-	    url: "http://fuelmeup.herokuapp.com/carMPG.json",
-        //url: "http://localhost:3000/carMPG.json",
+	   // url: "http://fuelmeup.herokuapp.com/carMPG.json",
+        url: "http://localhost:3000/carMPG.json",
         data: queryData,
         dataType: "json",
         success: function(tester) {
@@ -121,7 +125,7 @@ function fetchInputs()
 
     $.ajax({
         type: "GET",
-        url: "http://maps.googleapis.com/maps/api/directions/json",
+        url: "https://maps.googleapis.com/maps/api/directions/json",
         data: originToStation,
         dataType: "json",
         success: function(res) {console.log(res);}
@@ -129,7 +133,7 @@ function fetchInputs()
 
     $.ajax({
         type: "GET",
-        url: "http://maps.googleapis.com/maps/api/directions/json",
+        url: "https://maps.googleapis.com/maps/api/directions/json",
         data: stationToDest,
         dataType: "json",
         success: function(res) {console.log(res);}
@@ -249,11 +253,23 @@ function addGasMarkers(parsed){
 		l = 20;
 	}
     for (var i = 0; i < l; i++) {
-        createMarker(parsed.stations[i]);
+        createMarker(parsed.stations[i], i);
     }
+
+	console.log(weightedList);
+
+	//weightedList.sort( function(a,b) {return (a.FMUprice - b.FMUprice); });
+
+	results = document.getElementById("results");
+	results.innerHTML = results.innerHTML + "<h3> Cheapest stations, in order </h3>";
+	for (var j = 0; j < l; j++) {
+		results.innerHTML = results.innerHTML + "<p> Name: " + weightedList[j].station + "<br>Real Price: $" + weightedList[j].FMUprice
++ "<br> Address: " + weightedList[j].address + "<br> Distance: " + weightedList[j].distance + "</p>";
+	}
+
 }
 
-function createMarker(currStation){
+function createMarker(currStation, ctr){
     var stationLoc = new google.maps.LatLng(currStation.lat, currStation.lng);
     
     //will need to add more info about price, type, etc.
@@ -264,18 +280,25 @@ function createMarker(currStation){
 	    icon: "images/gas_ico.png"
     });
 
+
+	//Calculating round-trip price
+	var price = actualPrice(currStation.price, currStation.distance, currStation.distance, tankSize, gasAmount, MPG);
+
+	var content = "<div class=cont><p>"+currStation.station +'</p><p> Listed Price: $' + currStation.price + ' per gallon </p> <p>  Distance: ' + currStation.distance + '</p> <p> Fuel Me Up Price: $' + price + '</p> <p> Gas Buddy Price: $'+ (currStation.price * 15) + '</p></div>';
+
+
+		weightedList[ctr] = currStation;
+		weightedList[ctr].FMUprice = price;
+
     // Using the API, add information about close gas stations
     google.maps.event.addListener(stationMarker, 'click', function() {
         infowindow.close();
 
 
-	//Calculating round-trip price
-	price = actualPrice(currStation.price, currStation.distance, currStation.distance, tankSize, gasAmount, MPG);
-
-
-	var content = "<div class=cont><p>"+currStation.station +'</p><p> Listed Price: $' + currStation.price + ' per gallon </p> <p>  Distance: ' + currStation.distance + '</p> <p> Fuel Me Up Price: $' + price + '</p> <p> Gas Buddy Price: $'+ (currStation.price * 15) + '</p></div>';
         infowindow.setContent(content); // This gets the information
         infowindow.open(map, this);
+
+
     });
 }
 
