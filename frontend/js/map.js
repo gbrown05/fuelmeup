@@ -34,6 +34,8 @@ var map;
 var marker;
 var infowindow = new google.maps.InfoWindow();
 
+var directionsService = new google.maps.DirectionsService();
+var directionsDisplay = new google.maps.DirectionsRenderer();
 
 /* This function computes the actual price of gas given the following parameters:
 d1 = distance from origin point to gas station
@@ -55,6 +57,20 @@ function actualPrice (retail, d1, d2, tc, f, mpg) {
 	return w;
 }
 
+function calcRoute() {
+//  var start = document.getElementById("start").value;
+//  var end = document.getElementById("end").value;
+  var directions = {
+    origin:"Boston",
+    destination:"Revere Beach",
+    travelMode: google.maps.TravelMode.DRIVING
+  };
+  directionsService.route(directions, function(result, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(result);
+    }
+  });
+}
 
 function getLocalStorage() {
     if (localStorage["carMake"] != undefined) {
@@ -90,7 +106,7 @@ function fetchInputs()
 	var queryData = new Object();
 	queryData["make"]= carMake;
 	queryData["model"] = carModelYear;
-        var originToStation = new Object();
+/*        var originToStation = new Object();
         originToStation["origin"] = "Chicago";
         originToStation["destination"] = "St. Louis";
         originToStation["sensor"] = "false";
@@ -100,7 +116,7 @@ function fetchInputs()
         stationToDest["destination"] = "New York";
         stationToDest["sensor"] = "false";
         stationToDest["key"] = "AIzaSyDIXte623c_AXb7Ie127ENVIYUADql4EFI";
-
+*/
     var gasBuddyURI = "http://devapi.mygasfeed.com/stations/radius/" + /* lat */ + "/" +
                      /* lng */ + "/" + distance + "/" + /* fuel type */ +
                      "/distance/rfej9napna.json";
@@ -123,7 +139,7 @@ function fetchInputs()
 	}
     });
 
-    $.ajax({
+/*    $.ajax({
         type: "GET",
         url: "https://maps.googleapis.com/maps/api/directions/json",
         data: originToStation,
@@ -134,11 +150,12 @@ function fetchInputs()
     $.ajax({
         type: "GET",
         url: "https://maps.googleapis.com/maps/api/directions/json",
+
         data: stationToDest,
         dataType: "json",
         success: function(res) {console.log(res);}
     });
-/*
+
     $.ajax({
         type: "GET",
         url: gasBuddyURI,
@@ -148,6 +165,7 @@ function fetchInputs()
     });
 
 */
+    calcRoute();
     setLocalStorage();
  
 	
@@ -229,6 +247,7 @@ function renderMap(parsed) {
     });
 
     marker.setMap(map);
+    directionsDisplay.setMap(map);
 
     infowindow.setContent("You are here");
     infowindow.open(map, marker);

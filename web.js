@@ -13,14 +13,6 @@ var app = express();
 var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL ||
     "mongodb://localhost/testdb";
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 442beb13e04a320d4dc75852e7528046c59fc7ea
->>>>>>> cc38f13ef3081f7f6dfd94bf675030d36aa574aa
 var db = mongo.Db.connect(mongoUri, function (err, database) {
     db = database;
 });
@@ -44,18 +36,9 @@ app.get('/about', function(req, res) {
 app.get('/carMakes.json', function(req, res) {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "X-Requested-With");
-<<<<<<< HEAD
+
 
         db.collection("makes", function(er, col) {
-=======
-<<<<<<< HEAD
-		db.open();
-        db.collection("cars1", function(er, col) {
-=======
-
-        db.collection("makes", function(er, col) {
->>>>>>> 442beb13e04a320d4dc75852e7528046c59fc7ea
->>>>>>> cc38f13ef3081f7f6dfd94bf675030d36aa574aa
             if (!er) {
                 col.find({},{make:1, _id:0}).toArray(function(err, makeList) {
                     res.send(makeList);
@@ -73,17 +56,8 @@ app.get('/carMPG.json', function(req, res) {
 	//Holds the car make
 	var _make = escape(req.query.make);
 	var _model = escape(req.query.model);
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> cc38f13ef3081f7f6dfd94bf675030d36aa574aa
-	db.open();
-	
+
 	db.collection("makes", function(er,col) {
-<<<<<<< HEAD
-=======
->>>>>>> 442beb13e04a320d4dc75852e7528046c59fc7ea
->>>>>>> cc38f13ef3081f7f6dfd94bf675030d36aa574aa
 		if(!er) {
 			col.find({"make":_make, "model":_model} , {UCity:1, UHighway:1, year:1, barrels08:1,  _id:0} ).toArray(function(err, makeList) {
 				res.send(makeList);
