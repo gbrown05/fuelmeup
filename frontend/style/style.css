@@ -111,3 +111,20 @@ h3 {
       display: none;
     }
 }
+
+#amount {
+  width: 50%;
+  margin: auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#fractionupdate {
+  height: 30px;
+}
+
+#sliderinstr {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 10px;
+}
