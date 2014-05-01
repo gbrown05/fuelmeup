@@ -264,8 +264,8 @@ a:focus {
 }
 
 .row {
-  margin-left: -20px;
-  *zoom: 1;
+  /*margin-left: -20px;*/
+  /*zoom: 1;*/
 }
 
 .row:before,
@@ -282,7 +282,7 @@ a:focus {
 [class*="span"] {
   float: left;
   min-height: 1px;
-  margin-left: 20px;
+  /*margin-left: 20px;*/
 }
 
 .container,
