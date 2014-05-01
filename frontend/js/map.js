@@ -34,8 +34,10 @@ var map;
 var marker;
 var infowindow = new google.maps.InfoWindow();
 
-var directionsService = new google.maps.DirectionsService();
-var directionsDisplay = new google.maps.DirectionsRenderer();
+var fromDirectionsService = new google.maps.DirectionsService();
+var fromDirectionsDisplay = new google.maps.DirectionsRenderer();
+var toDirectionsService = new google.maps.DirectionsService();
+var toDirectionsDisplay = new google.maps.DirectionsRenderer();
 
 /* This function computes the actual price of gas given the following parameters:
 d1 = distance from origin point to gas station
@@ -57,17 +59,30 @@ function actualPrice (retail, d1, d2, tc, f, mpg) {
 	return w;
 }
 
-function calcRoute() {
+function calcRoute(stationLoc) {
 //  var start = document.getElementById("start").value;
 //  var end = document.getElementById("end").value;
-  var directions = {
-    origin:"Boston",
-    destination:"Revere Beach",
+  var fromDirections = {
+    origin: me,
+    destination: stationLoc,
     travelMode: google.maps.TravelMode.DRIVING
   };
-  directionsService.route(directions, function(result, status) {
+
+  var toDirections = {
+    origin: stationLoc,
+    destination: destination,
+    travelMode: google.maps.TravelMode.DRIVING
+  };
+  
+  fromDirectionsService.route(fromDirections, function(result, status) {
     if (status == google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(result);
+      fromDirectionsDisplay.setDirections(result);
+    }
+  });
+
+  toDirectionsService.route(toDirections, function(result, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      toDirectionsDisplay.setDirections(result);
     }
   });
 }
@@ -117,15 +132,14 @@ function fetchInputs()
         stationToDest["sensor"] = "false";
         stationToDest["key"] = "AIzaSyDIXte623c_AXb7Ie127ENVIYUADql4EFI";
 */
-    var gasBuddyURI = "http://devapi.mygasfeed.com/stations/radius/" + /* lat */ + "/" +
-                     /* lng */ + "/" + distance + "/" + /* fuel type */ +
-                     "/distance/rfej9napna.json";
-
+    //var gasBuddyURI = "http://devapi.mygasfeed.com/stations/radius/" + /* lat */ + "/" +
+      //               /* lng */ + "/" + distance + "/" + /* fuel type */ +
+        //             "/distance/rfej9napna.json";
 
     $.ajax({
         type: "GET",
-	   // url: "http://fuelmeup.herokuapp.com/carMPG.json",
-        url: "http://localhost:3000/carMPG.json",
+	    url: "http://fuelmeup.herokuapp.com/carMPG.json",
+        //url: "http://localhost:3000/carMPG.json",
         data: queryData,
         dataType: "json",
         success: function(tester) {
@@ -165,10 +179,7 @@ function fetchInputs()
     });
 
 */
-    calcRoute();
     setLocalStorage();
- 
-	
 }
 
 function setLocalStorage()
@@ -182,16 +193,14 @@ function setLocalStorage()
 }
 
 
-
-
 function initialize() {
     // Set up the request
     request = new XMLHttpRequest();
 
     //TODO: This is the DEV API KEY -- use production for real
-    var toget = "http://devapi.mygasfeed.com/stations/radius/" + lat + "/" +
+    var toget = "http://api.mygasfeed.com/stations/radius/" + lat + "/" +
             longe + "/" + radius + "/" + type +
-            "/price/rfej9napna.json? callback="; 
+            "/price/pmwiy9rbr2.json?callback="; 
     request.open("GET", toget, true);
 
     // Execute the request
@@ -205,7 +214,7 @@ function initialize() {
 function callback() {
     if (request.readyState == 4 && request.status == 200) {
         parsed = request.responseText;
-        var newStr = parsed.replace('({', '{');
+        var newStr = parsed.substring(1);
         parsed = JSON.parse(newStr); 
         renderMap(parsed);
     } else {
@@ -247,7 +256,8 @@ function renderMap(parsed) {
     });
 
     marker.setMap(map);
-    directionsDisplay.setMap(map);
+    fromDirectionsDisplay.setMap(map);
+    toDirectionsDisplay.setMap(map);
 
     infowindow.setContent("You are here");
     infowindow.open(map, marker);
@@ -274,15 +284,37 @@ function addGasMarkers(parsed){
     for (var i = 0; i < l; i++) {
         createMarker(parsed.stations[i], i);
     }
+	var ctr = 0;
 
+	var tempArr = new Object();
+	
+	for(var i = 0; i <l; i++) {
+		if((!isNaN(weightedList[i].FMUprice) ) && (weightedList[i].station != undefined) ) {		
+			tempArr[ctr] = weightedList[i];
+			ctr++;
+		}
+	}
+
+	weightedList = tempArr;
+	l = ctr-1;
+	
+	/* Yuck, selection sort */
+	for(var i = 0; i < l-1; i++) {
+		var mindex = i;
+		for (var j = i+1; j < l; j++) {
+			if(weightedList[j].FMUprice < weightedList[i].FMUprice) {
+				mindex = j;
+			}
+		}
+			var temp = weightedList[mindex];
+			weightedList[mindex] = weightedList[i];
+			weightedList[i] = temp; 
+	}
 	console.log(weightedList);
-
-	//weightedList.sort( function(a,b) {return (a.FMUprice - b.FMUprice); });
-
 	//results = document.getElementById("results");
 	/*results.innerHTML = results.innerHTML + */
-	var table = "<h3> Cheapest stations, in order </h3><table><tr><th>Name</th><th>Real Price: $</th><th>Address</th><th>Distance</th></tr>";
-	for (var j = 0; j < 10; j++) {
+	var table = "<h3> Cheapest stations, in order </h3><table><tr><th>Name</th><th>Real Price:</th><th>Address</th><th>Distance</th></tr>";
+	for (var j = 0; j < l; j++) {
 		table = table + "<tr><td>" + weightedList[j].station + "</td><td>" + weightedList[j].FMUprice
 + "</td><td>" + weightedList[j].address + "</td><td>" + weightedList[j].distance + "</td></tr>";
 	}
@@ -319,6 +351,7 @@ function createMarker(currStation, ctr){
 
         infowindow.setContent(content); // This gets the information
         infowindow.open(map, this);
+        calcRoute(stationLoc);
 
 
     });
