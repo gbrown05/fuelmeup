@@ -25,7 +25,7 @@ Unlike simple price comparison tools, FuelMeUp will help people make informed de
 
 ### Other Data
 
-+ U.S. Government car database *************************
++ U.S. Government car database
 
 ### Original Mockups
 
