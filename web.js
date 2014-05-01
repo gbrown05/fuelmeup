@@ -37,7 +37,6 @@ app.get('/carMakes.json', function(req, res) {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "X-Requested-With");
 
-
         db.collection("makes", function(er, col) {
             if (!er) {
                 col.find({},{make:1, _id:0}).toArray(function(err, makeList) {
@@ -56,7 +55,6 @@ app.get('/carMPG.json', function(req, res) {
 	//Holds the car make
 	var _make = escape(req.query.make);
 	var _model = escape(req.query.model);
-
 	db.collection("makes", function(er,col) {
 		if(!er) {
 			col.find({"make":_make, "model":_model} , {UCity:1, UHighway:1, year:1, barrels08:1,  _id:0} ).toArray(function(err, makeList) {

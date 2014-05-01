@@ -2002,8 +2002,10 @@ table {
 }
 
 .table {
-  width: 100%;
+  width: 90%;
   margin-bottom: 20px;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .table th,
