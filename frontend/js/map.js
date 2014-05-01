@@ -34,8 +34,8 @@ var infowindow = new google.maps.InfoWindow();
 
 var fromDirectionsService = new google.maps.DirectionsService();
 var fromDirectionsDisplay = new google.maps.DirectionsRenderer();
-var toDirectionsService = new google.maps.DirectionsService();
-var toDirectionsDisplay = new google.maps.DirectionsRenderer();
+//var toDirectionsService = new google.maps.DirectionsService();
+//var toDirectionsDisplay = new google.maps.DirectionsRenderer();
 
 /* This function computes the actual price of gas given the following parameters:
 d1 = distance from origin point to gas station
@@ -64,11 +64,11 @@ function calcRoute(stationLoc) {
     travelMode: google.maps.TravelMode.DRIVING
   };
 
-  var toDirections = {
+/*  var toDirections = {
     origin: stationLoc,
     destination: destination,
     travelMode: google.maps.TravelMode.DRIVING
-  };
+  }; */
   
   fromDirectionsService.route(fromDirections, function(result, status) {
     if (status == google.maps.DirectionsStatus.OK) {
@@ -76,11 +76,11 @@ function calcRoute(stationLoc) {
     }
   });
 
-  toDirectionsService.route(toDirections, function(result, status) {
+/*  toDirectionsService.route(toDirections, function(result, status) {
     if (status == google.maps.DirectionsStatus.OK) {
       toDirectionsDisplay.setDirections(result);
     }
-  });
+  }); */
 }
 
 function getLocalStorage() {
@@ -209,7 +209,7 @@ function renderMap(parsed) {
 
     marker.setMap(map);
     fromDirectionsDisplay.setMap(map);
-    toDirectionsDisplay.setMap(map);
+//    toDirectionsDisplay.setMap(map);
 
     infowindow.setContent("You are here");
     infowindow.open(map, marker);
