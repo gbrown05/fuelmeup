@@ -138,8 +138,8 @@ function fetchInputs()
 
     $.ajax({
         type: "GET",
-	    url: "http://fuelmeup.herokuapp.com/carMPG.json",
-        //url: "http://localhost:3000/carMPG.json",
+	    //url: "http://fuelmeup.herokuapp.com/carMPG.json",
+        url: "http://localhost:3000/carMPG.json",
         data: queryData,
         dataType: "json",
         success: function(tester) {
@@ -190,6 +190,8 @@ function setLocalStorage()
     localStorage["destination"] = destination;
     localStorage["gasAmount"] = gasAmount;
     localStorage["distance"] = distance;
+    localStorage["latitude"] = lat;
+    localStorage["longitude"] = longe;
 }
 
 
@@ -310,7 +312,7 @@ function addGasMarkers(parsed){
 			weightedList[mindex] = weightedList[i];
 			weightedList[i] = temp; 
 	}
-	console.log(weightedList);
+
 	//results = document.getElementById("results");
 	/*results.innerHTML = results.innerHTML + */
 	var table = "<h3> Cheapest stations, in order </h3><table><tr><th>Name</th><th>Real Price:</th><th>Address</th><th>Distance</th></tr>";
