@@ -302,7 +302,7 @@ function createMarker(currStation, ctr){
 	//Calculating round-trip price
 	var price = actualPrice(currStation.price, currStation.distance, currStation.distance, tankSize, gasAmount, MPG);
 
-	var content = "<div class=cont><p>"+currStation.station +'</p><p> Listed Price: $' + currStation.price + ' per gallon </p> <p>  Distance: ' + currStation.distance + '</p> <p> Fuel Me Up Price: $' + price + '</p> <p> Gas Buddy Price: $'+ (currStation.price * tankSize) + '</p></div>';
+	var content = "<div class=cont><p>"+currStation.station +'</p><p> Listed Price: $' + currStation.price + ' per gallon </p> <p>  Distance: ' + currStation.distance + '</p> <p> Fuel Me Up Price: $' + (Math.round(price*100) / 100) + '</p> <p> Gas Buddy Price: $'+ (Math.round((currStation.price * tankSize) * 100) / 100) + '</p></div>';
 
 
 		weightedList[ctr] = currStation;
