@@ -97,4 +97,7 @@ Other CSS custom
       margin-bottom: 30px;
       width: 75%;
     }
+    #results {
+      display: none;
+    }
 }

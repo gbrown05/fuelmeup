@@ -90,9 +90,6 @@ function getLocalStorage() {
     if (localStorage["carModelYear"] != undefined) {
         document.getElementById("modelyear").value = localStorage["carModelYear"];
     }
-    if(localStorage["destination"] != undefined) {
-        document.getElementById("dest").value = localStorage["destination"];
-    }
     if(localStorage["gasAmount"] != undefined) {
         document.getElementById("amount").value = localStorage["gasAmount"];
     }
@@ -103,7 +100,6 @@ function fetchInputs()
 {
     carMake = escape(document.getElementById("make").value);
     carModelYear = escape(document.getElementById("modelyear").value);
-    destination = escape(document.getElementById("dest").value);
     gasAmount = escape(document.getElementById("amount").value);
 
 	var queryData = new Object();
@@ -274,7 +270,8 @@ function addGasMarkers(parsed){
 + "</td><td>" + link + "</td><td>" + weightedList[j].distance + "</td></tr>";
 	}
 	table = table + "</table>";
-	//document.getElementById("results").innerHTML = table;
+	document.getElementById("results").innerHTML = table;
+    enquire.register("screen and (min-width:45em)", function() {
     $.fancybox({
         margin: 5,
         padding: 5,
@@ -290,6 +287,7 @@ function addGasMarkers(parsed){
         overlayOpacity: 0.8,
         content: table
       })
+    });
 }
 
 function createMarker(currStation, ctr){
