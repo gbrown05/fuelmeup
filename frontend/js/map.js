@@ -22,6 +22,7 @@ var request;
 var errcount = 0;
 var lat = 0;
 var longe = 0;
+var parsed = {};
 me = new google.maps.LatLng(lat, longe);
 var mapOptions = {
     zoom: 12,
@@ -90,12 +91,12 @@ function fetchInputs()
 	queryData["make"]= carMake;
 	queryData["model"] = carModelYear;
         var originToStation = new Object();
-        originToStation["origin"] = /* current location */
-        originToStation["destination"] = /* gas station */
+        originToStation["origin"] = "Chicago";
+        originToStation["destination"] = "St. Louis";
         originToStation["sensor"] = false;
         var stationToDest = new Object();
-        stationToDest["origin"] = /* gas station */
-        stationToDest["destination"] = destination;
+        stationToDest["origin"] = "St. Louis";
+        stationToDest["destination"] = "New York";
         stationToDest["sensor"] = false;
 
     var gasBuddyURI = "http://devapi.mygasfeed.com/stations/radius/" + /* lat */ + "/" +
@@ -120,7 +121,6 @@ function fetchInputs()
 	}
     });
 
-/*
     $.ajax({
         type: "GET",
         url: "http://maps.googleapis.com/maps/api/directions/json",
@@ -136,7 +136,7 @@ function fetchInputs()
         dataType: "json",
         success: function(res) {console.log(res);}
     });
-
+/*
     $.ajax({
         type: "GET",
         url: gasBuddyURI,
@@ -184,7 +184,7 @@ function initialize() {
 // Handle the request
 function callback() {
     if (request.readyState == 4 && request.status == 200) {
-        var parsed = request.responseText;
+        parsed = request.responseText;
         var newStr = parsed.replace('({', '{');
         parsed = JSON.parse(newStr); 
         renderMap(parsed);
