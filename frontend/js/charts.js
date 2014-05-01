@@ -18,7 +18,7 @@ function makeCharts() {
     //TODO: This is the DEV API KEY -- use production for real
     var toget = "http://api.mygasfeed.com/stations/radius/" + lat + "/" +
             longe + "/" + radius + "/" + type +
-            "/price/pmwiy9rbr2.json?callback="; 
+            "/distance/pmwiy9rbr2.json?callback="; 
     request.open("GET", toget, true);
 
     // Execute the request
@@ -33,7 +33,6 @@ function callback() {
         parsed = request.responseText;
         var newStr = parsed.substring(1);
         parsed = JSON.parse(newStr); 
-        console.log(parsed);
 
         var id = new Array();
         var date = new Array();
@@ -50,7 +49,6 @@ function callback() {
 				j++;
 			}
 		}
-		console.log(distance);
 
         var ctx = document.getElementById("chart_div").getContext("2d");
 
@@ -74,15 +72,17 @@ function callback() {
 				}
 			]
 		}
-
 		var myNewChart = new Chart(ctx).Bar(data);
+
+		chart_exp = document.getElementById("chart_exp");
+		chart_exp.innerHTML = "<p>This chart shows the distance to the 3 closest gas stations in miles and the associated price at those stations. The price from the first bar is from " + date[0] + ". The price from the second bar is from " + date[1] + ". The price from the third bar is from " + date[2] + ".</p>";
     }
 }
 
 function parseDist(dist) {
 	dist = dist.replace(" miles","");
-	dist = parseInt(dist);
-	return dist
+	dist = parseFloat(dist);
+	return dist;
 }
 
 function start() {

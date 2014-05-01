@@ -128,3 +128,8 @@ h3 {
   text-align: center;
   padding-bottom: 10px;
 }
+
+#chart_exp {
+  padding-left: 20px;
+  padding-right: 20px;
+}
