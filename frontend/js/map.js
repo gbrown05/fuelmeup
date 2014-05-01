@@ -111,9 +111,9 @@ function fetchInputs()
         data: queryData,
         dataType: "json",
         success: function(tester) {
-		var results = document.getElementById("results");
-		var resText = "<h3> Results </h3> <p>Your car is a " + carMake +" " + carModelYear + " with a city mileage of " + tester[0]["UCity"] + "MPG and a highway mileage of " + tester[0]["UHighway"] + "MPG </p>"; 
-		results.innerHTML = resText;
+		//var results = document.getElementById("results");
+		//var resText = "<h3> Results </h3> <p>Your car is a " + carMake +" " + carModelYear + " with a city mileage of " + tester[0]["UCity"] + "MPG and a highway mileage of " + tester[0]["UHighway"] + "MPG </p>"; 
+		//results.innerHTML = resText;
 		MPG = tester[0]["UHighway"];
 		tankSize = tester[0]["barrels08"];
 		addGasMarkers(stationsList);
@@ -258,12 +258,15 @@ function addGasMarkers(parsed){
 
 	//weightedList.sort( function(a,b) {return (a.FMUprice - b.FMUprice); });
 
-	results = document.getElementById("data");
-	results.innerHTML = results.innerHTML + "<h3> Cheapest stations, in order </h3>";
-	for (var j = 0; j < l; j++) {
-		results.innerHTML = results.innerHTML + "<p> Name: " + weightedList[j].station + "<br>Real Price: $" + weightedList[j].FMUprice
-+ "<br> Address: " + weightedList[j].address + "<br> Distance: " + weightedList[j].distance + "</p>";
+	//results = document.getElementById("results");
+	/*results.innerHTML = results.innerHTML + */
+	var table = "<h3> Cheapest stations, in order </h3><table><tr><th>Name</th><th>Real Price: $</th><th>Address</th><th>Distance</th></tr>";
+	for (var j = 0; j < 10; j++) {
+		table = table + "<tr><td>" + weightedList[j].station + "</td><td>" + weightedList[j].FMUprice
++ "</td><td>" + weightedList[j].address + "</td><td>" + weightedList[j].distance + "</td></tr>";
 	}
+	table = table + "</table>";
+	document.getElementById("results").innerHTML = table;
 
 }
 
