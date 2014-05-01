@@ -8,10 +8,8 @@ var tankSize;
 var MPG;
 var carMake;
 var carModelYear;
-var gasType;
 var destination;
 var gasAmount;
-var distance;
 var radius = 10; //temporary, will come from user
 var type = "reg";
 
@@ -60,8 +58,6 @@ function actualPrice (retail, d1, d2, tc, f, mpg) {
 }
 
 function calcRoute(stationLoc) {
-//  var start = document.getElementById("start").value;
-//  var end = document.getElementById("end").value;
   var fromDirections = {
     origin: me,
     destination: stationLoc,
@@ -94,17 +90,11 @@ function getLocalStorage() {
     if (localStorage["carModelYear"] != undefined) {
         document.getElementById("modelyear").value = localStorage["carModelYear"];
     }
-    if(localStorage["gasType"] != undefined) {
-        document.getElementById("type").value = localStorage["gasType"];
-    }
     if(localStorage["destination"] != undefined) {
         document.getElementById("dest").value = localStorage["destination"];
     }
     if(localStorage["gasAmount"] != undefined) {
         document.getElementById("amount").value = localStorage["gasAmount"];
-    }
-    if(localStorage["distance"] != undefined) {
-        document.getElementById("dist").value = localStorage["distance"];
     }
 }
 
@@ -113,28 +103,12 @@ function fetchInputs()
 {
     carMake = escape(document.getElementById("make").value);
     carModelYear = escape(document.getElementById("modelyear").value);
-    gasType = escape(document.getElementById("type").value);
     destination = escape(document.getElementById("dest").value);
     gasAmount = escape(document.getElementById("amount").value);
-    distance = escape(document.getElementById("dist").value);
 
 	var queryData = new Object();
 	queryData["make"]= carMake;
 	queryData["model"] = carModelYear;
-/*        var originToStation = new Object();
-        originToStation["origin"] = "Chicago";
-        originToStation["destination"] = "St. Louis";
-        originToStation["sensor"] = "false";
-        originToStation["key"] = "AIzaSyDIXte623c_AXb7Ie127ENVIYUADql4EFI";
-        var stationToDest = new Object();
-        stationToDest["origin"] = "St. Louis";
-        stationToDest["destination"] = "New York";
-        stationToDest["sensor"] = "false";
-        stationToDest["key"] = "AIzaSyDIXte623c_AXb7Ie127ENVIYUADql4EFI";
-*/
-    //var gasBuddyURI = "http://devapi.mygasfeed.com/stations/radius/" + /* lat */ + "/" +
-      //               /* lng */ + "/" + distance + "/" + /* fuel type */ +
-        //             "/distance/rfej9napna.json";
 
     $.ajax({
         type: "GET",
@@ -146,39 +120,20 @@ function fetchInputs()
 		//var results = document.getElementById("results");
 		//var resText = "<h3> Results </h3> <p>Your car is a " + carMake +" " + carModelYear + " with a city mileage of " + tester[0]["UCity"] + "MPG and a highway mileage of " + tester[0]["UHighway"] + "MPG </p>"; 
 		//results.innerHTML = resText;
+		
+
+		if (tester[0] != undefined) {		
 		MPG = tester[0]["UHighway"];
 		tankSize = tester[0]["barrels08"];
 		addGasMarkers(stationsList);
+		} else {
+			alert("This car model is not supported!");
+			
+		}
 
 	}
     });
 
-/*    $.ajax({
-        type: "GET",
-        url: "https://maps.googleapis.com/maps/api/directions/json",
-        data: originToStation,
-        dataType: "json",
-        success: function(res) {console.log(res);}
-    });
-
-    $.ajax({
-        type: "GET",
-        url: "https://maps.googleapis.com/maps/api/directions/json",
-
-        data: stationToDest,
-        dataType: "json",
-        success: function(res) {console.log(res);}
-    });
-
-    $.ajax({
-        type: "GET",
-        url: gasBuddyURI,
-        data: {},
-        dataType: "json",
-        success: function(res) {console.log(res);}
-    });
-
-*/
     setLocalStorage();
 }
 
@@ -186,12 +141,12 @@ function setLocalStorage()
 {
     localStorage["carMake"] = carMake;
     localStorage["carModelYear"] = carModelYear;
-    localStorage["gasType"] = gasType;
     localStorage["destination"] = destination;
     localStorage["gasAmount"] = gasAmount;
     localStorage["distance"] = distance;
     localStorage["latitude"] = lat;
     localStorage["longitude"] = longe;
+
 }
 
 
@@ -313,8 +268,6 @@ function addGasMarkers(parsed){
 			weightedList[i] = temp; 
 	}
 
-	//results = document.getElementById("results");
-	/*results.innerHTML = results.innerHTML + */
 	var table = "<h3> Cheapest stations, in order </h3><table><tr><th>Name</th><th>Real Price:</th><th>Address</th><th>Distance</th></tr>";
 	for (var j = 0; j < l; j++) {
 		table = table + "<tr><td>" + weightedList[j].station + "</td><td>" + weightedList[j].FMUprice
@@ -340,7 +293,7 @@ function createMarker(currStation, ctr){
 	//Calculating round-trip price
 	var price = actualPrice(currStation.price, currStation.distance, currStation.distance, tankSize, gasAmount, MPG);
 
-	var content = "<div class=cont><p>"+currStation.station +'</p><p> Listed Price: $' + currStation.price + ' per gallon </p> <p>  Distance: ' + currStation.distance + '</p> <p> Fuel Me Up Price: $' + price + '</p> <p> Gas Buddy Price: $'+ (currStation.price * tankSize) + '</p></div>';
+	var content = "<div class=cont><p>"+currStation.station +'</p><p> Listed Price: $' + currStation.price + ' per gallon </p> <p>  Distance: ' + currStation.distance + '</p> <p> Fuel Me Up Price: $' + (Math.round(price*100) / 100) + '</p> <p> Gas Buddy Price: $'+ (Math.round((currStation.price * tankSize) * 100) / 100) + '</p></div>';
 
 
 		weightedList[ctr] = currStation;
@@ -359,4 +312,26 @@ function createMarker(currStation, ctr){
     });
 }
 
+/*
+var service = new google.maps.DistanceMatrixService();   
+  service.getDistanceMatrix(
+      {
+        origins: [me, stationLoc],
+        destinations: [stationLoc, destination],
+        travelMode: google.maps.TravelMode.DRIVING,
+        unitSystem: google.maps.UnitSystem.IMPERIAL 
+      }, parseDistance);
 
+function parseDistance(response, status) {
+    if (status == google.maps.DistanceMatrixStatus.OK) {
+        var from = response.rows[0].elements[0];
+        fromDistance = from.distance.text;
+	fromDistance = fromDistance + "les";
+        console.log(fromDistance);
+        var to = response.rows[1].elements[1];
+        toDistance = to.distance.text;
+	toDistance = toDistance + "les";
+        console.log(toDistance);
+    }
+}
+*/
