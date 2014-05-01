@@ -60,8 +60,6 @@ function actualPrice (retail, d1, d2, tc, f, mpg) {
 }
 
 function calcRoute(stationLoc) {
-//  var start = document.getElementById("start").value;
-//  var end = document.getElementById("end").value;
   var fromDirections = {
     origin: me,
     destination: stationLoc,
@@ -121,20 +119,6 @@ function fetchInputs()
 	var queryData = new Object();
 	queryData["make"]= carMake;
 	queryData["model"] = carModelYear;
-/*        var originToStation = new Object();
-        originToStation["origin"] = "Chicago";
-        originToStation["destination"] = "St. Louis";
-        originToStation["sensor"] = "false";
-        originToStation["key"] = "AIzaSyDIXte623c_AXb7Ie127ENVIYUADql4EFI";
-        var stationToDest = new Object();
-        stationToDest["origin"] = "St. Louis";
-        stationToDest["destination"] = "New York";
-        stationToDest["sensor"] = "false";
-        stationToDest["key"] = "AIzaSyDIXte623c_AXb7Ie127ENVIYUADql4EFI";
-*/
-    //var gasBuddyURI = "http://devapi.mygasfeed.com/stations/radius/" + /* lat */ + "/" +
-      //               /* lng */ + "/" + distance + "/" + /* fuel type */ +
-        //             "/distance/rfej9napna.json";
 
     $.ajax({
         type: "GET",
@@ -160,32 +144,6 @@ function fetchInputs()
 	}
     });
 
-/*    $.ajax({
-        type: "GET",
-        url: "https://maps.googleapis.com/maps/api/directions/json",
-        data: originToStation,
-        dataType: "json",
-        success: function(res) {console.log(res);}
-    });
-
-    $.ajax({
-        type: "GET",
-        url: "https://maps.googleapis.com/maps/api/directions/json",
-
-        data: stationToDest,
-        dataType: "json",
-        success: function(res) {console.log(res);}
-    });
-
-    $.ajax({
-        type: "GET",
-        url: gasBuddyURI,
-        data: {},
-        dataType: "json",
-        success: function(res) {console.log(res);}
-    });
-
-*/
     setLocalStorage();
 }
 
