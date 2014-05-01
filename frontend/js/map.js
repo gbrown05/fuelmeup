@@ -269,8 +269,9 @@ function addGasMarkers(parsed){
 
 	var table = "<h3> Cheapest stations, in order </h3><table><tr><th>Name</th><th>Real Price:</th><th>Address</th><th>Distance</th></tr>";
 	for (var j = 0; j < l; j++) {
+        var link = "<a href='http://maps.google.com/?q=" + weightedList[j].address + "'>" + weightedList[j].address + "</a>";
 		table = table + "<tr><td>" + weightedList[j].station + "</td><td>" + weightedList[j].FMUprice
-+ "</td><td>" + "http://maps.google.com/?q=" + weightedList[j].address + "</td><td>" + weightedList[j].distance + "</td></tr>";
++ "</td><td>" + link + "</td><td>" + weightedList[j].distance + "</td></tr>";
 	}
 	table = table + "</table>";
 	//document.getElementById("results").innerHTML = table;
