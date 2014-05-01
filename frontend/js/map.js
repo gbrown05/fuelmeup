@@ -143,7 +143,6 @@ function setLocalStorage()
     localStorage["carModelYear"] = carModelYear;
     localStorage["destination"] = destination;
     localStorage["gasAmount"] = gasAmount;
-    localStorage["distance"] = distance;
     localStorage["latitude"] = lat;
     localStorage["longitude"] = longe;
 
