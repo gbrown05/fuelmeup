@@ -1,25 +1,14 @@
-It's probably more helpful to start working on a big thing and own it than to
-just work on an easy thing.
-
-
 To do:
 big stuff:
-deal with cars/info that DNE
-deal with queries and stuff
-figure out how to present the best options for the user
-mobile interface -- Max
-sanitize input -- George
-graphs -- max/victor --> look at halligan helper source code
-cookies/local storage -- victor
+deal with cars/info that DNE -- BAD USER INPUT!!!
+GRAPHS!
+sanitize input -- are we good on this?
+typeahead? distance/other routes?
 
 easy stuff:
-about.html
-make the whole thing look good
+about.html -- still should be better
 validate html5 (and css?)
-
-eventually:
-switch to live mygasfeed API (key on asana)
-finalize google maps API stuff/gas stations, etc
+remove extra files/node modules (eg validator if we dont use)
 
 Pick 5:
 Geolocation
