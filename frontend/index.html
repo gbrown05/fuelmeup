@@ -41,7 +41,6 @@
 			</div> -->
 
 			<div id="howmuch" class="pagination-centered">
-				<!-- <input id="amount" type="text" placeholder="What fraction of your tank do you want?"> -->
 				<form oninput="this.form.amount.value=this.value">
 					<input id="amount" name="amountRange" type="range" min="0" max="1" step=".05" value=".5" oninput="this.form.amountInput.value=this.value"/>
 					<input id="fractionupdate" type="number" name="amountInput" min="0" max="1" step=".05" value="0.5" oninput="this.form.amountRange.value=this.value" />

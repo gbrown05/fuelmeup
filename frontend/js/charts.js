@@ -53,22 +53,22 @@ function callback() {
         var ctx = document.getElementById("chart_div").getContext("2d");
 
         var data = {
-			labels : [/*"Time",*/"Price Per Gallon","Distance To Station"],
+			labels : ["Price Per Gallon","Distance To Station"],
 			datasets : [
 				{
 					fillColor : "rgba(220,220,220,0.5)",
 					strokeColor : "rgba(220,220,220,1)",
-					data : [/*date[0],*/ price[0], distance[0]]
+					data : [price[0], distance[0]]
 				},
 				{
 					fillColor : "rgba(151,187,205,0.5)",
 					strokeColor : "rgba(151,187,205,1)",
-					data : [/*date[1],*/ price[1], distance[1]]
+					data : [price[1], distance[1]]
 				},
 				{
 					fillColor : "rgba(220,220,220,0.5)",
 					strokeColor : "rgba(220,220,220,1)",
-					data : [/*date[2], */price[2], distance[2]]
+					data : [price[2], distance[2]]
 				}
 			]
 		}
@@ -85,63 +85,4 @@ function parseDist(dist) {
 	return dist;
 }
 
-function start() {
-	var toget = "http://api.mygasfeed.com/stations/radius/" + lat + "/" +
-	            longe + "/" + radius + "/" + type +
-	            "/price/pmwiy9rbr2.json?callback="; 
 
-	$.ajax({
-	        type: "GET",
-		    //url: "http://fuelmeup.herokuapp.com/carMPG.json",
-	        url: toget,
-	        dataType: "json",
-	        success: function() {
-	        		google.load("visualization", "1", {packages:["corechart"]});
-					google.setOnLoadCallback(drawChart);
-			}
-	});
-}
-/*
-function drawChart() {
-	console.log("in draw chart");
-	console.log(parsed);
-	var id = parsed.stations[0].id;
-	var date = parsed.stations[0].date;
-	var distance = parsed.stations[0].distance;
-	var price = parsed.stations[0].price;
-
-	var data = google.visualization.arrayToDataTable(
-		[
-		  ['Time', 'Price', 'Distance'],
-		  [date, price, distance]
-	    ]);
-
-	var options = {
-	  	title: 'Car Statistics',
-	  	hAxis: {title: 'Year', titleTextStyle: {color: 'red'}}
-	};
-
-	var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-		chart.draw(data, options);
-}*/
-/*
- google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses'],
-          ['2004',  1000,      400],
-          ['2005',  1170,      460],
-          ['2006',  660,       1120],
-          ['2007',  1030,      540]
-        ]);
-
-        var options = {
-          title: 'Company Performance',
-          hAxis: {title: 'Year', titleTextStyle: {color: 'red'}}
-        };
-
-        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      }
-      */
