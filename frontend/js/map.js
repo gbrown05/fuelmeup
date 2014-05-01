@@ -263,7 +263,7 @@ function addGasMarkers(parsed){
 			weightedList[i] = temp; 
 	}
 
-	var table = "<h3> Cheapest stations, in order </h3><table><tr><th>Name</th><th>Real Price:</th><th>Address</th><th>Distance</th></tr>";
+	var table = "<h3>Cheapest Stations Near You</h3><table class='table table-hover'><tr><th>Name</th><th>Real Price:</th><th>Address</th><th>Distance</th></tr>";
 	for (var j = 0; j < l; j++) {
         var link = "<a href='http://maps.google.com/?q=" + weightedList[j].address + "'>" + weightedList[j].address + "</a>";
 		table = table + "<tr><td>" + weightedList[j].station + "</td><td>" + weightedList[j].FMUprice
@@ -271,7 +271,8 @@ function addGasMarkers(parsed){
 	}
 	table = table + "</table>";
 	document.getElementById("results").innerHTML = table;
-    enquire.register("screen and (max-width:62em)", function() {
+    enquire.register("(max-width:62em)", function() {
+            document.getElementById("results").innerHTML = "";
     $.fancybox({
         margin: 5,
         padding: 5,

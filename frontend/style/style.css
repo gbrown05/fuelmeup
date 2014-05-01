@@ -25,6 +25,16 @@ Other CSS custom
       #footer {
         background-color: #f5f5f5;
       }
+          table, .table-responsive {
+      width: 100%;
+      margin-left: 0%;
+      margin-right: 30%;
+      overflow-y: hidden;
+
+    }
+h3 {
+  position: center;
+}
 
 .container {
   width: auto;
@@ -97,7 +107,7 @@ Other CSS custom
       margin-bottom: 30px;
       width: 75%;
     }
-    #results {
+    #hideme {
       display: none;
     }
 }
