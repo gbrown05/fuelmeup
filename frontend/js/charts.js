@@ -42,55 +42,48 @@ function callback() {
 
         var j = 0;
         for (var i = 0; i < 20; i++) {
-        	if(!isNaN(parsed.stations[i].price)) 
+        	if (!isNaN(parsed.stations[i].price)) { 
 		        id[j] = parsed.stations[i].id;
 				date[j] = parsed.stations[i].date;
-				distance[j] = parsed.stations[i].distance;
+				distance[j] = parseDist(parsed.stations[i].distance);
 				price[j] = parsed.stations[i].price;
 				j++;
 			}
 		}
-
-		console.log(date);
 		console.log(distance);
-		console.log(price);
-/*
-		var dataset = new Array();
-		for (var i = 0; i < 20; i++) {
-			dataset[i] = '{
-				fillColor : "rgba(220,220,220,0.5)",
-				strokeColor : "rgba(220,220,220,1)",
-				data: [date[i],price[i],distance[i]
-			}'
-		}*/
 
         var ctx = document.getElementById("chart_div").getContext("2d");
 
         var data = {
-			labels : [/*"Time",*/"Price"/*,"Distance"*/],
+			labels : [/*"Time",*/"Price Per Gallon","Distance To Station"],
 			datasets : [
 				{
 					fillColor : "rgba(220,220,220,0.5)",
 					strokeColor : "rgba(220,220,220,1)",
-					data : [/*date[0],*/ price[0]/*, distance[0]*/]
+					data : [/*date[0],*/ price[0], distance[0]]
 				},
 				{
 					fillColor : "rgba(151,187,205,0.5)",
 					strokeColor : "rgba(151,187,205,1)",
-					data : [/*date[1],*/ price[1]/*, distance[1]*/]
+					data : [/*date[1],*/ price[1], distance[1]]
 				},
 				{
 					fillColor : "rgba(220,220,220,0.5)",
 					strokeColor : "rgba(220,220,220,1)",
-					data : [/*date[2], */price[2]/*, distance[2]*/]
+					data : [/*date[2], */price[2], distance[2]]
 				}
 			]
 		}
 
 		var myNewChart = new Chart(ctx).Bar(data);
-
+    }
 }
 
+function parseDist(dist) {
+	dist = dist.replace(" miles","");
+	dist = parseInt(dist);
+	return dist
+}
 
 function start() {
 	var toget = "http://api.mygasfeed.com/stations/radius/" + lat + "/" +
