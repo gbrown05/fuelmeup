@@ -34,8 +34,10 @@ var map;
 var marker;
 var infowindow = new google.maps.InfoWindow();
 
-var directionsService = new google.maps.DirectionsService();
-var directionsDisplay = new google.maps.DirectionsRenderer();
+var fromDirectionsService = new google.maps.DirectionsService();
+var fromDirectionsDisplay = new google.maps.DirectionsRenderer();
+var toDirectionsService = new google.maps.DirectionsService();
+var toDirectionsDisplay = new google.maps.DirectionsRenderer();
 
 /* This function computes the actual price of gas given the following parameters:
 d1 = distance from origin point to gas station
@@ -57,17 +59,30 @@ function actualPrice (retail, d1, d2, tc, f, mpg) {
 	return w;
 }
 
-function calcRoute() {
+function calcRoute(stationLoc) {
 //  var start = document.getElementById("start").value;
 //  var end = document.getElementById("end").value;
-  var directions = {
-    origin:"Boston",
-    destination:"Revere Beach",
+  var fromDirections = {
+    origin: me,
+    destination: stationLoc,
     travelMode: google.maps.TravelMode.DRIVING
   };
-  directionsService.route(directions, function(result, status) {
+
+  var toDirections = {
+    origin: stationLoc,
+    destination: destination,
+    travelMode: google.maps.TravelMode.DRIVING
+  };
+  
+  fromDirectionsService.route(fromDirections, function(result, status) {
     if (status == google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(result);
+      fromDirectionsDisplay.setDirections(result);
+    }
+  });
+
+  toDirectionsService.route(toDirections, function(result, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      toDirectionsDisplay.setDirections(result);
     }
   });
 }
@@ -164,10 +179,7 @@ function fetchInputs()
     });
 
 */
-    calcRoute();
     setLocalStorage();
- 
-	
 }
 
 function setLocalStorage()
@@ -179,8 +191,6 @@ function setLocalStorage()
     localStorage["gasAmount"] = gasAmount;
     localStorage["distance"] = distance;
 }
-
-
 
 
 function initialize() {
@@ -246,7 +256,8 @@ function renderMap(parsed) {
     });
 
     marker.setMap(map);
-    directionsDisplay.setMap(map);
+    fromDirectionsDisplay.setMap(map);
+    toDirectionsDisplay.setMap(map);
 
     infowindow.setContent("You are here");
     infowindow.open(map, marker);
@@ -340,6 +351,7 @@ function createMarker(currStation, ctr){
 
         infowindow.setContent(content); // This gets the information
         infowindow.open(map, this);
+        calcRoute(stationLoc);
 
 
     });
