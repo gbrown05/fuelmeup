@@ -43,21 +43,12 @@
 				<input id="modelyear" class="typeahead" type="text" placeholder="Model and Year">
 			</div>
 
-			
-				<div id="gasType" class="pagination-centered">
-					<input class="typeahead" id="type" type="text" placeholder="What type of gas do you buy?">
-				</div>
-		
 			<div id="destination" class="pagination-centered">
 				<input id="dest" class="typeahead" type="text" placeholder="Are you going anywhere else?">
 			</div>
 
 			<div id="howmuch" class="pagination-centered">
 				<input id="amount" class="typeahead" type="text" placeholder="How much gas do you want?">
-			</div>
-
-			<div id="howfar" class="pagination-centered">
-				<input id="dist" class="typeahead" type="text" placeholder="How many miles will you go?">
 			</div>
 
 			<div class="button.btn.btn-large pagination-centered">
