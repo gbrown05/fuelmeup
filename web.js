@@ -1,14 +1,11 @@
 var express = require("express");
 var logfmt = require("logfmt");
-var sanitizeInput = require("validator").sanitize;
-//var routes = require("./routes");
 var http = require("http");
 var path = require ("path");
 var mongo = require("mongodb");
 var favicon = require("static-favicon");
 
 var app = express();
-//var colName;
 
 var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL ||
     "mongodb://localhost/testdb";
@@ -37,8 +34,7 @@ app.get('/carMakes.json', function(req, res) {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "X-Requested-With");
 
-
-        db.collection("makes", function(er, col) {
+        db.collection("cars1", function(er, col) {
             if (!er) {
                 col.find({},{make:1, _id:0}).toArray(function(err, makeList) {
                     res.send(makeList);
@@ -49,7 +45,6 @@ app.get('/carMakes.json', function(req, res) {
 });
 /* Returns a JSON of the various miles-per-gallon values of a car of a given make and model */
 app.get('/carMPG.json', function(req, res) {
-
 	//Allow CORS
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -58,7 +53,7 @@ app.get('/carMPG.json', function(req, res) {
 	var _make = escape(req.query.make);
 	var _model = escape(req.query.model);
 
-	db.collection("makes", function(er,col) {
+	db.collection("cars1", function(er,col) {
 		if(!er) {
 			col.find({"make":_make, "model":_model} , {UCity:1, UHighway:1, year:1, barrels08:1,  _id:0} ).toArray(function(err, makeList) {
 				res.send(makeList);
