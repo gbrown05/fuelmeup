@@ -22,6 +22,7 @@ var request;
 var errcount = 0;
 var lat = 0;
 var longe = 0;
+var parsed = {};
 me = new google.maps.LatLng(lat, longe);
 var mapOptions = {
     zoom: 12,
@@ -57,8 +58,7 @@ function actualPrice (retail, d1, d2, tc, f, mpg) {
 
 function getLocalStorage() {
     if (localStorage["carMake"] != undefined) {
-        var make = document.getElementById("make");
-        make.value = localStorage["carMake"];
+        document.getElementById("make").value = localStorage["carMake"];
     }
     if (localStorage["carModelYear"] != undefined) {
         document.getElementById("modelyear").value = localStorage["carModelYear"];
@@ -186,7 +186,7 @@ function initialize() {
 // Handle the request
 function callback() {
     if (request.readyState == 4 && request.status == 200) {
-        var parsed = request.responseText;
+        parsed = request.responseText;
         var newStr = parsed.replace('({', '{');
         parsed = JSON.parse(newStr); 
         renderMap(parsed);
@@ -260,7 +260,7 @@ function addGasMarkers(parsed){
 
 	//weightedList.sort( function(a,b) {return (a.FMUprice - b.FMUprice); });
 
-	results = document.getElementById("results");
+	results = document.getElementById("data");
 	results.innerHTML = results.innerHTML + "<h3> Cheapest stations, in order </h3>";
 	for (var j = 0; j < l; j++) {
 		results.innerHTML = results.innerHTML + "<p> Name: " + weightedList[j].station + "<br>Real Price: $" + weightedList[j].FMUprice
