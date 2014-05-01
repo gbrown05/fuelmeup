@@ -8,10 +8,8 @@ var tankSize;
 var MPG;
 var carMake;
 var carModelYear;
-var gasType;
 var destination;
 var gasAmount;
-var distance;
 var radius = 10; //temporary, will come from user
 var type = "reg";
 
@@ -92,17 +90,11 @@ function getLocalStorage() {
     if (localStorage["carModelYear"] != undefined) {
         document.getElementById("modelyear").value = localStorage["carModelYear"];
     }
-    if(localStorage["gasType"] != undefined) {
-        document.getElementById("type").value = localStorage["gasType"];
-    }
     if(localStorage["destination"] != undefined) {
         document.getElementById("dest").value = localStorage["destination"];
     }
     if(localStorage["gasAmount"] != undefined) {
         document.getElementById("amount").value = localStorage["gasAmount"];
-    }
-    if(localStorage["distance"] != undefined) {
-        document.getElementById("dist").value = localStorage["distance"];
     }
 }
 
@@ -111,10 +103,8 @@ function fetchInputs()
 {
     carMake = escape(document.getElementById("make").value);
     carModelYear = escape(document.getElementById("modelyear").value);
-    gasType = escape(document.getElementById("type").value);
     destination = escape(document.getElementById("dest").value);
     gasAmount = escape(document.getElementById("amount").value);
-    distance = escape(document.getElementById("dist").value);
 
 	var queryData = new Object();
 	queryData["make"]= carMake;
@@ -151,10 +141,8 @@ function setLocalStorage()
 {
     localStorage["carMake"] = carMake;
     localStorage["carModelYear"] = carModelYear;
-    localStorage["gasType"] = gasType;
     localStorage["destination"] = destination;
     localStorage["gasAmount"] = gasAmount;
-    localStorage["distance"] = distance;
 }
 
 
