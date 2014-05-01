@@ -22,7 +22,7 @@
 		    ]);
 
 		var options = {
-		  	title: 'Company Performance',
+		  	title: 'Car Statistics',
 		  	hAxis: {title: 'Year', titleTextStyle: {color: 'red'}}
 		};
 
