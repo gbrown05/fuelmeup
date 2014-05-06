@@ -149,10 +149,10 @@ function initialize() {
     // Set up the request
     request = new XMLHttpRequest();
 
-    //TODO: This is the DEV API KEY -- use production for real
-    var toget = "http://api.mygasfeed.com/stations/radius/" + lat + "/" +
+    //TODO: This is the DEV API KEY -- use production for real prod
+    var toget = "http://devapi.mygasfeed.com/stations/radius/" + lat + "/" +
             longe + "/" + radius + "/" + type +
-            "/price/pmwiy9rbr2.json?callback="; 
+            "/price/rfej9napna.json?callback="; 
     request.open("GET", toget, true);
 
     // Execute the request
